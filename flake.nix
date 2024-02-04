@@ -1,0 +1,25 @@
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    parts.url = "github:hercules-ci/flake-parts";
+  };
+  outputs = inputs@{ parts, ... }:
+    parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        # "aarch64-linux"
+      ];
+      perSystem = { pkgs, config, ... }: {
+        devShells = {
+          default = pkgs.mkShell {
+            packages = with pkgs; [ bun nodejs ];
+            shellHook = ''
+              exec fish
+            '';
+          };
+        };
+      };
+
+      flake = { };
+    };
+}

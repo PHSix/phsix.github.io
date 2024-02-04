@@ -62,7 +62,7 @@ export function App() {
 
 				<div class="split-line min-h-full h-full w-[1px] bg-gray-600/10" />
 
-				<section class="text-left p-4 md:p-0">
+				<section class="text-left p-4 md:p-0 space-y-2">
 					<div>Hello, I'm Yi Chen, welcome to access my github site.</div>
 
 					<div>I am a front-end developer based in WuHan China.</div>
@@ -159,8 +159,13 @@ export function App() {
 				</Card>
 			</div>
 
-			<footer class={"mt-8 text-sm flex justify-end text-stone-300"}>
+			<footer
+				class={
+					"mt-8 text-sm flex items-end justify-end text-stone-300 flex-col text-right space-y-1"
+				}
+			>
 				<div>This site is built by preact.js.</div>
+				<div>Deploy by Vercel.</div>
 			</footer>
 		</main>
 	);
