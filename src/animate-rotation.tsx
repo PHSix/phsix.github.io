@@ -11,27 +11,15 @@ import {
 	WebGLRenderer,
 } from "three";
 
-function createBezierY() {
-	let count = 0;
-	return {
-		get value() {
-			return Math.sin((Math.PI * count) / 90);
-		},
-		next() {
-			count++;
-		},
-	};
-}
+const darkFg = new Color("#d1d5db");
+const fg = new Color("#44403c");
 
-export function AnimateRotation(props: {
-	className?: string;
-	isDark?: boolean;
-}) {
+export function AnimateRotation(props: { isDark?: boolean }) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [material] = useState(
 		() =>
 			new MeshBasicMaterial({
-				color: new Color("#44403c"),
+				color: props.isDark ? darkFg : fg,
 				wireframe: true,
 			})
 	);
@@ -49,7 +37,7 @@ export function AnimateRotation(props: {
 		const near = 0.01;
 		const far = 300;
 		const camera = new PerspectiveCamera(fov, aspect, near, far);
-		camera.position.set(0, 0, 100);
+		camera.position.set(0, 0, 90);
 
 		const renderer = new WebGLRenderer({ canvas, alpha: true });
 		// set transparent background
@@ -71,7 +59,7 @@ export function AnimateRotation(props: {
 		renderer.render(scene, camera);
 
 		let angleY = 0;
-		let draging = false;
+		let dragging = false;
 
 		function rotateY(offsetY: number) {
 			angleY = (angleY + offsetY) % 360;
@@ -80,23 +68,23 @@ export function AnimateRotation(props: {
 		const y = createBezierY();
 
 		const renderTimer: number = setInterval(() => {
-			if (!draging) {
-				rotateY(1);
+			if (!dragging) {
+				rotateY(0.5);
 				y.next();
 			}
 
 			mesh.rotation.set(0, (angleY / 180) * Math.PI, 0);
 			group.position.setY(y.value);
 			renderer.render(scene, camera);
-			// 40 frames in a second
-		}, 1000 / 40);
+			// 60fps in a second
+		}, 1000 / 60);
 
 		canvas.addEventListener("mousedown", () => {
-			draging = true;
+			dragging = true;
 		});
 
 		const onMouseMove = (ev: MouseEvent) => {
-			if (draging) {
+			if (dragging) {
 				rotateY(ev.movementX % 3);
 			}
 		};
@@ -104,8 +92,8 @@ export function AnimateRotation(props: {
 		window.addEventListener("mousemove", onMouseMove);
 
 		const onMouseUp = () => {
-			if (draging) {
-				draging = false;
+			if (dragging) {
+				dragging = false;
 			}
 		};
 
@@ -123,11 +111,27 @@ export function AnimateRotation(props: {
 
 	useEffect(() => {
 		if (props.isDark) {
-			material.color = new Color("#44403c");
+			material.color = darkFg;
 		} else {
-			material.color = new Color("#d1d5db");
+			material.color = fg;
 		}
 	}, [props.isDark]);
 
-	return <canvas className={props.className} ref={canvasRef} />;
+	return <canvas className={"w-full h-full"} ref={canvasRef} />;
+}
+
+/**
+ * create a float bezier y
+ */
+function createBezierY() {
+	let count = 0;
+
+	return {
+		get value() {
+			return Math.sin((Math.PI * count) / 90);
+		},
+		next() {
+			count += 0.3;
+		},
+	};
 }

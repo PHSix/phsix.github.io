@@ -4,6 +4,8 @@ import neovimSvg from "./assert/neovim.svg";
 import nodeJsSvg from "./assert/nodejs.svg";
 import threejsSvg from "./assert/threejs.svg";
 import typescriptSvg from "./assert/typescript.svg";
+import nixosSvg from "./assert/nixos.svg";
+import plusSvg from "./assert/plus.svg";
 
 export function NeovimIcon(props: JSX.IntrinsicElements["img"]) {
 	return <img src={neovimSvg} {...props} />;
@@ -41,4 +43,12 @@ export function ThreejsIcon(props: JSX.IntrinsicElements["img"]) {
 
 export function NodeJsIcon(props: JSX.IntrinsicElements["img"]) {
 	return <img src={nodeJsSvg} {...props} />;
+}
+
+export function NixosIcon(props: JSX.IntrinsicElements["img"]) {
+	return <img src={nixosSvg} {...props} />;
+}
+
+export function PlusIcon(props: JSX.IntrinsicElements["img"]) {
+	return <img src={plusSvg} {...props} />;
 }
