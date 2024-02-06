@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode, useState } from "preact/compat";
+import { PropsWithChildren, ReactNode } from "preact/compat";
 
 export function Tooltip(
 	props: PropsWithChildren<{ content: ReactNode; className?: string }>
