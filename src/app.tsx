@@ -13,12 +13,7 @@ import {
 } from "./icon";
 import { ThemeSwitch } from "./theme-switch";
 import { Tooltip } from "./tooltip";
-import { Suspense, lazy } from "preact/compat";
-
-const AnimateRotation = lazy(() =>
-	// import("./animate-rotation").then((mod) => ({ default: mod.AnimateRotation }))
-	import("./animate-rotation").then((mod) => mod.AnimateRotation)
-);
+import { AnimateRotation } from "./animate-rotation";
 
 export function App() {
 	const dark = useSignal(false);
@@ -54,9 +49,7 @@ export function App() {
 			>
 				<section class="text-center">
 					<div class="w-[24em] h-[24em]">
-						<Suspense fallback={null}>
-							<AnimateRotation isDark={dark.value} />
-						</Suspense>
+						<AnimateRotation isDark={dark.value} />
 					</div>
 				</section>
 
