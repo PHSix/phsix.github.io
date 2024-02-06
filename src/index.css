@@ -16,3 +16,11 @@
 .title {
 	font-size: 1.6em;
 }
+
+.tooltip > .tooltip-child {
+	display: none;
+}
+
+.tooltip:hover > .tooltip-child {
+	display: block;
+}

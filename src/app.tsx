@@ -31,7 +31,11 @@ export function App() {
 			<header class="flex justify-between items-center px-3 py-5">
 				<div class="text-[2em]">PH's site</div>
 				<div class="flex flex-row gap-4 items-center">
-					<a class="hover:text-stone-300" href={"https://github.com/PHSix"}>
+					<a
+						class="hover:text-stone-300"
+						href={"https://github.com/PHSix"}
+						target={"_blank"}
+					>
 						/Github
 					</a>
 					<ThemeSwitch
@@ -73,8 +77,8 @@ export function App() {
 							Nixos
 						</div>
 
-						<Tooltip content={<div>Do you want to view my dotfiles?</div>}>
-							<a href={"https://github.com/PHSix/nvim"} target={"_blank"}>
+						<Tooltip content={<div>My nix flake config.</div>}>
+							<a href={"https://github.com/PHSix/nix-config"} target={"_blank"}>
 								<GithubIcon class={"h-[1.5em]"} />
 							</a>
 						</Tooltip>
@@ -122,8 +126,8 @@ export function App() {
 							Neovim
 						</div>
 
-						<Tooltip content={<div>My nix flake configs.</div>}>
-							<a href={"https://github.com/PHSix/nix-config"} target={"_blank"}>
+						<Tooltip content={<div>Do you want to visit my nvim config?</div>}>
+							<a href={"https://github.com/PHSix/nvim"} target={"_blank"}>
 								<GithubIcon class={"h-[1.5em]"} />
 							</a>
 						</Tooltip>
