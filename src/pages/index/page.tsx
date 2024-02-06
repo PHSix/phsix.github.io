@@ -10,12 +10,12 @@ import {
 	ReactIcon,
 	ThreejsIcon,
 	TypescriptIcon,
-} from "./icon";
+} from "~/components/icon";
 import { ThemeSwitch } from "./theme-switch";
 import { Tooltip } from "./tooltip";
 import { AnimateRotation } from "./animate-rotation";
 
-export function App() {
+export default function Index() {
 	const dark = useSignal(false);
 
 	useEffect(() => {

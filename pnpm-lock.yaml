@@ -14,6 +14,15 @@ dependencies:
   preact:
     specifier: ^10.19.3
     version: 10.19.3
+  preact-iso:
+    specifier: ^2.3.2
+    version: 2.3.2(preact-render-to-string@6.3.1)(preact@10.19.3)
+  preact-render-to-string:
+    specifier: ^6.3.1
+    version: 6.3.1(preact@10.19.3)
+  preact-router:
+    specifier: ^4.1.2
+    version: 4.1.2(preact@10.19.3)
   three:
     specifier: ^0.161.0
     version: 0.161.0
@@ -1493,8 +1502,42 @@ packages:
       three: 0.161.0
     dev: false
 
+  /preact-iso@2.3.2(preact-render-to-string@6.3.1)(preact@10.19.3):
+    resolution: {integrity: sha512-OU+6dzX1/qAyWfH4zKVqp/apNLfAr8yx4aBUVKyBWoOyPT08bNJk4o08KWIwyQyEkpayW5q+5+GAkYBSky8ndw==}
+    peerDependencies:
+      preact: '>=10'
+      preact-render-to-string: '>=5'
+    peerDependenciesMeta:
+      preact-render-to-string:
+        optional: true
+    dependencies:
+      preact: 10.19.3
+      preact-render-to-string: 6.3.1(preact@10.19.3)
+    dev: false
+
+  /preact-render-to-string@6.3.1(preact@10.19.3):
+    resolution: {integrity: sha512-NQ28WrjLtWY6lKDlTxnFpKHZdpjfF+oE6V4tZ0rTrunHrtZp6Dm0oFrcJalt/5PNeqJz4j1DuZDS0Y6rCBoqDA==}
+    peerDependencies:
+      preact: '>=10'
+    dependencies:
+      preact: 10.19.3
+      pretty-format: 3.8.0
+    dev: false
+
+  /preact-router@4.1.2(preact@10.19.3):
+    resolution: {integrity: sha512-uICUaUFYh+XQ+6vZtQn1q+X6rSqwq+zorWOCLWPF5FAsQh3EJ+RsDQ9Ee+fjk545YWQHfUxhrBAaemfxEnMOUg==}
+    peerDependencies:
+      preact: '>=10'
+    dependencies:
+      preact: 10.19.3
+    dev: false
+
   /preact@10.19.3:
     resolution: {integrity: sha512-nHHTeFVBTHRGxJXKkKu5hT8C/YWBkPso4/Gad6xuj5dbptt9iF9NZr9pHbPhBrnT2klheu7mHTxTZ/LjwJiEiQ==}
+
+  /pretty-format@3.8.0:
+    resolution: {integrity: sha1-v77VbV6ad2ZF9LH/eqGjrE+jw4U=}
+    dev: false
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}

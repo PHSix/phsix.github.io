@@ -1,5 +1,31 @@
-import { render } from 'preact'
-import { App } from './app.tsx'
-import './index.css'
+import {
+	LocationProvider,
+	Router,
+	Route,
+	lazy,
+	hydrate,
+	prerender as ssr,
+} from "preact-iso";
+import "./index.css";
 
-render(<App />, document.getElementById('app')!)
+const App = () => {
+	return (
+		<LocationProvider>
+			<Router>
+				<Route default component={lazy(() => import("~/pages/index/page"))} />
+				<Route
+					path="bundler"
+					component={lazy(() => import("~/pages/bundler/page"))}
+				/>
+			</Router>
+		</LocationProvider>
+	);
+};
+
+if (typeof window !== "undefined") {
+	hydrate(<App />, document.getElementById("app"));
+}
+
+export async function prerender(data: any) {
+	return await ssr(<App {...data} />);
+}
