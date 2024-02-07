@@ -1,5 +1,3 @@
-import {} from "preact";
-
 export default function Bundler() {
-	return <div></div>;
+	return <div>WIP</div>;
 }

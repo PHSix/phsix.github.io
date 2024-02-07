@@ -13,7 +13,8 @@ import {
 } from "~/components/icon";
 import { ThemeSwitch } from "./theme-switch";
 import { Tooltip } from "./tooltip";
-import { AnimateRotation } from "./animate-rotation";
+import { getTHREE } from "~/lib/three";
+import AnimateRotation from "./animate-rotation";
 
 export default function Index() {
 	const dark = useSignal(false);

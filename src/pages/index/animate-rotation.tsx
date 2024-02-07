@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import {
-	Color,
-	Group,
-	Mesh,
-	MeshBasicMaterial,
-	Object3D,
-	PerspectiveCamera,
-	Scene,
-	SphereGeometry,
-	WebGLRenderer,
-} from "three";
+import { getTHREE } from "~/lib/three";
 
-const darkFg = new Color("#d1d5db");
-const fg = new Color("#44403c");
+function AnimateRotation(props: { isDark?: boolean }) {
+	const {
+		Color,
+		Group,
+		Mesh,
+		MeshBasicMaterial,
+		Object3D,
+		PerspectiveCamera,
+		Scene,
+		SphereGeometry,
+		WebGLRenderer,
+	} = getTHREE();
 
-export function AnimateRotation(props: { isDark?: boolean }) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const [darkFg] = useState(() => new Color("#d1d5db"));
+	const [fg] = useState(() => new Color("#44403c"));
 	const [material] = useState(
 		() =>
 			new MeshBasicMaterial({
@@ -134,4 +135,12 @@ function createBezierY() {
 			count += 0.3;
 		},
 	};
+}
+
+export default function (props: Parameters<typeof AnimateRotation>[0]) {
+	if (typeof window !== "undefined") {
+		return <AnimateRotation {...props} />;
+	}
+
+	return null;
 }

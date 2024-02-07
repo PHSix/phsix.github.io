@@ -9,7 +9,6 @@ export default defineConfig({
 		preact({
 			prerender: {
 				enabled: true,
-				renderTarget: "#app",
 				additionalPrerenderRoutes: ["/bundler"],
 			},
 		}),
@@ -18,15 +17,15 @@ export default defineConfig({
 		port: 3000,
 	},
 	build: {
-		// rollupOptions: {
-		// 	external: ["three"],
-		// 	output: {
-		// 		paths: {
-		// 			three: "https://unpkg.com/three@0.161.0/build/three.module.js",
-		// 			// three: "https://unpkg.com/browse/three@0.161.0/build/three.cjs",
-		// 		},
-		// 	},
-		// },
+		rollupOptions: {
+			external: ["three"],
+			output: {
+				paths: {
+					three: "https://unpkg.com/three@0.161.0/build/three.module.js",
+					// three: "https://unpkg.com/browse/three@0.161.0/build/three.cjs",
+				},
+			},
+		},
 	},
 	resolve: {
 		alias: {

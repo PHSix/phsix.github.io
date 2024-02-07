@@ -8,6 +8,7 @@ import {
 import "./index.css";
 import Index from "./pages/index/page";
 import Bundler from "./pages/bundler/page";
+import { initTHREE } from "./lib/three";
 
 interface AppProps {
 	ssr: boolean;
@@ -39,7 +40,10 @@ const App = (props: AppProps | {}) => {
 };
 
 if (typeof window !== "undefined") {
-	hydrate(<App />, document.getElementById("app"));
+	import("three").then((THREE) => {
+		initTHREE(THREE);
+		hydrate(<App />, document.getElementById("app"));
+	});
 }
 
 export async function prerender(data: any) {
