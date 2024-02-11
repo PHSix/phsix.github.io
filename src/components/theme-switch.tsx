@@ -1,8 +1,9 @@
-export function ThemeSwitch(props: {
-	isDark: boolean;
-	onSwitch: (isDark: boolean) => void;
-}) {
-	if (!props.isDark) {
+import useDark from "~/hooks/useDark";
+
+export function ThemeSwitch() {
+	const dark = useDark();
+
+	if (!dark.value) {
 		return (
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +11,9 @@ export function ThemeSwitch(props: {
 				height="2em"
 				class="cursor-pointer"
 				viewBox="0 0 256 256"
-				onClick={() => props.onSwitch(!props.isDark)}
+				onClick={() => {
+					dark.value = !dark.value;
+				}}
 			>
 				<path
 					fill="currentColor"
@@ -27,7 +30,9 @@ export function ThemeSwitch(props: {
 			height="2em"
 			viewBox="0 0 24 24"
 			class="cursor-pointer"
-			onClick={() => props.onSwitch(!props.isDark)}
+			onClick={() => {
+				dark.value = !dark.value;
+			}}
 		>
 			<path
 				fill="currentColor"

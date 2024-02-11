@@ -1,26 +1,27 @@
+import { useSignalEffect } from "@preact/signals";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { getTHREE } from "~/lib/three";
+import {
+	Color,
+	Group,
+	Mesh,
+	MeshBasicMaterial,
+	Object3D,
+	PerspectiveCamera,
+	Scene,
+	SphereGeometry,
+	WebGLRenderer,
+} from "three";
+import useDark from "~/hooks/useDark";
 
-function AnimateRotation(props: { isDark?: boolean }) {
-	const {
-		Color,
-		Group,
-		Mesh,
-		MeshBasicMaterial,
-		Object3D,
-		PerspectiveCamera,
-		Scene,
-		SphereGeometry,
-		WebGLRenderer,
-	} = getTHREE();
-
+export default function AnimateRotation() {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [darkFg] = useState(() => new Color("#d1d5db"));
 	const [fg] = useState(() => new Color("#44403c"));
+	const dark = useDark();
 	const [material] = useState(
 		() =>
 			new MeshBasicMaterial({
-				color: props.isDark ? darkFg : fg,
+				color: dark.value ? darkFg : fg,
 				wireframe: true,
 			})
 	);
@@ -51,7 +52,7 @@ function AnimateRotation(props: { isDark?: boolean }) {
 
 		const group = new Group();
 		group.add(mesh);
-		group.rotateZ(-Math.PI / 5);
+		group.rotateZ(Math.PI / 5);
 
 		scene.add(group);
 
@@ -68,9 +69,9 @@ function AnimateRotation(props: { isDark?: boolean }) {
 
 		const y = createBezierY();
 
-		const renderTimer: number = setInterval(() => {
+		const renderTimer = setInterval(() => {
 			if (!dragging) {
-				rotateY(0.5);
+				rotateY(-0.5);
 				y.next();
 			}
 
@@ -110,15 +111,15 @@ function AnimateRotation(props: { isDark?: boolean }) {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (props.isDark) {
+	useSignalEffect(() => {
+		if (dark.value) {
 			material.color = darkFg;
 		} else {
 			material.color = fg;
 		}
-	}, [props.isDark]);
+	});
 
-	return <canvas className={"w-full h-full"} ref={canvasRef} />;
+	return <canvas className="w-full h-full" ref={canvasRef} />;
 }
 
 /**
@@ -135,12 +136,4 @@ function createBezierY() {
 			count += 0.3;
 		},
 	};
-}
-
-export default function (props: Parameters<typeof AnimateRotation>[0]) {
-	if (typeof window !== "undefined") {
-		return <AnimateRotation {...props} />;
-	}
-
-	return null;
 }

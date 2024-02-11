@@ -1,0 +1,101 @@
+.blog-page-banner {
+	background-image: url("/nixos-wallpaper.png");
+	background-size: cover;
+	background-position: center;
+	@apply p-4 rounded-xl;
+}
+
+.blog-page-content {
+	font-size: 1em;
+}
+
+.blog-page-content > h1 {
+	font-size: 1.5em;
+
+	&::after {
+		content: "";
+		height: 1px;
+		@apply w-full block bg-stone-300;
+	}
+}
+
+.blog-page-content > h2 {
+	font-size: 1.3em;
+	&::after {
+		content: "";
+		height: 1px;
+		@apply w-full block bg-stone-300/90;
+	}
+}
+
+.blog-page-content > h3 {
+	font-size: 1.2em;
+
+	&::after {
+		content: "";
+		height: 1px;
+		@apply w-full block bg-stone-300/70;
+	}
+}
+
+.blog-page-content > p {
+	text-indent: 2rem;
+}
+
+.blog-page-content {
+	& > ol {
+		list-style-type: decimal;
+		list-style-position: inside;
+	}
+
+	& > ul {
+		list-style-type: square;
+		list-style-position: inside;
+	}
+
+	& > p {
+		@apply my-4;
+	}
+
+	li {
+		text-indent: 2rem;
+		&::marker {
+			position: relative;
+		}
+	}
+
+	code {
+		@apply px-1 inline-block bg-red-50 rounded text-left box-border mx-[4px] dark:bg-stone-700/80 dark:text-stone-200;
+		text-indent: 0;
+	}
+
+	pre[class*="language-"],
+	pre {
+		@apply w-full p-2;
+		background: none;
+		& > code {
+			background: none;
+			@apply bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96;
+		}
+
+		code[class*="language-"],
+		code {
+			text-shadow: none;
+		}
+	}
+
+	a {
+		@apply p-0 px-1 relative;
+
+		&:visited {
+			@apply text-stone-600 dark:text-stone-400;
+		}
+
+		&::after {
+			content: "";
+			left: 0;
+			bottom: 0;
+			@apply w-full absolute h-[1px] bg-stone-700 dark:bg-stone-200;
+		}
+	}
+}
