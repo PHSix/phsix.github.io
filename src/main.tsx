@@ -1,5 +1,4 @@
 import { LocationProvider, Router, Route, hydrate } from "preact-iso";
-import ssr from "./utils/ssr";
 import "./index.css";
 import { FC, Suspense, lazy } from "preact/compat";
 
@@ -58,5 +57,7 @@ if (typeof window !== "undefined") {
 }
 
 export async function prerender(data: any) {
-	return await ssr(<App {...data} />, {});
+	return await import("~/utils/ssr").then(({ default: ssr }) => {
+		return ssr(<App {...data} />, {});
+	});
 }
