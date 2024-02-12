@@ -1,4 +1,7 @@
+import cx from "~/utils/cx";
+
 export interface LinkProps {
+	class?: string;
 	text?: string;
 	url?: string;
 	blank?: boolean;
@@ -11,7 +14,7 @@ export interface LinkProps {
 export function Link(props: LinkProps) {
 	return (
 		<a
-			class="hover:text-stone-300"
+			class={cx("hover:text-stone-300", props.class)}
 			href={props.url}
 			target={props.blank ? "_blank" : void 0}
 			onClick={props.blank ? void 0 : props.onClick}

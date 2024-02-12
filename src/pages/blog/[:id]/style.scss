@@ -1,5 +1,4 @@
 .blog-page-banner {
-	background-image: url("/nixos-wallpaper.png");
 	background-size: cover;
 	background-position: center;
 	@apply p-4 rounded-xl;
@@ -97,5 +96,9 @@
 			bottom: 0;
 			@apply w-full absolute h-[1px] bg-stone-700 dark:bg-stone-200;
 		}
+	}
+
+	img {
+		@apply block text-center;
 	}
 }

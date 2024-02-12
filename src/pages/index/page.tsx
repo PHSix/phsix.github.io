@@ -18,16 +18,16 @@ export default function Index() {
 		<DefaultLayout
 			title="PH's Site"
 			links={[
-				{
-					url: "/blog",
-					text: "/Blog",
-					blank: true,
-				},
-				{
-					url: "/bundler",
-					text: "/Bundler",
-					blank: true,
-				},
+				// {
+				// 	url: "/blog",
+				// 	text: "/Blog",
+				// 	blank: true,
+				// },
+				// {
+				// 	url: "/bundler",
+				// 	text: "/Bundler",
+				// 	blank: true,
+				// },
 				{
 					url: "https://github.com/PHSix",
 					text: "/Github",
@@ -72,13 +72,11 @@ export default function Index() {
 								Nixos
 							</div>
 
-							<Tooltip content={<div>My nix flake config.</div>}>
-								<a
-									href={"https://github.com/PHSix/nix-config"}
-									target={"_blank"}
-								>
-									<GithubIcon class={"h-[1.5em]"} />
-								</a>
+							<Tooltip
+								content={"Do you want to visit my nix flake config?"}
+								url={"https://github.com/PHSix/nix-config"}
+							>
+								<GithubIcon class={"h-[1.5em]"} />
 							</Tooltip>
 						</div>
 
@@ -127,11 +125,10 @@ export default function Index() {
 							</div>
 
 							<Tooltip
-								content={<div>Do you want to visit my nvim config?</div>}
+								content={"Do you want to visit my nvim config?"}
+								url={"https://github.com/PHSix/nvim"}
 							>
-								<a href={"https://github.com/PHSix/nvim"} target={"_blank"}>
-									<GithubIcon class={"h-[1.5em]"} />
-								</a>
+								<GithubIcon class={"h-[1.5em]"} />
 							</Tooltip>
 						</div>
 

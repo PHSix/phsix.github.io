@@ -1,7 +1,13 @@
-import { PropsWithChildren, useEffect, useState } from "preact/compat";
+import {
+	Fragment,
+	PropsWithChildren,
+	useEffect,
+	useState,
+} from "preact/compat";
 import { ThemeSwitch } from "~/components/theme-switch";
 import { LinkProps, Link } from "~/components/Link";
 import debounce from "debounce";
+import { PopupLinks } from "./popup-links";
 
 const getIsMd = () =>
 	typeof window === "undefined" ? true : window.innerWidth < 768;
@@ -14,6 +20,7 @@ export function DefaultLayout(
 	}>
 ) {
 	const [isMd, setIsMd] = useState(getIsMd);
+	const [showMenu, setShowMenu] = useState(false);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -37,7 +44,19 @@ export function DefaultLayout(
 				</div>
 				<div class="flex flex-row gap-4 items-center">
 					{isMd ? (
-						<div class="cursor-pointer">🔗</div>
+						<Fragment>
+							<div
+								class="cursor-pointer"
+								onClick={() => setShowMenu(!showMenu)}
+							>
+								🔗
+							</div>
+							<PopupLinks
+								visiable={showMenu}
+								links={props.links}
+								onClose={() => setShowMenu(false)}
+							/>
+						</Fragment>
 					) : (
 						props.links?.map((link) => <Link {...link} key={link.text} />)
 					)}

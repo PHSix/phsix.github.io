@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { DefaultLayout } from "~/layouts/default-layout";
 import blogs, { Blog as BlogType } from "#blogs";
 import { ClientComponent } from "~/components/client-component";
+import { urlToStatic } from "~/components/image";
 
 interface LocalBlogType extends BlogType {
 	date: string;
@@ -40,7 +41,9 @@ export default function Blog() {
 			{/* TODO: image holder*/}
 			<div
 				class="h-56 bg-cover bg-center rounded-xl"
-				style={{ backgroundImage: "url(/nixos-wallpaper.png)" }}
+				style={{
+					backgroundImage: `url(${urlToStatic("/images/nixos-wallpaper.png")})`,
+				}}
 			></div>
 			<div class="px-8 my-4">
 				{Object.entries(blogsMap).map(([timeline, blogs]) => (

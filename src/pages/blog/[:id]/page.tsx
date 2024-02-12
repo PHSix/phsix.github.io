@@ -1,15 +1,12 @@
 import blogs from "#blogs";
 import { useLocation, useRoute } from "preact-iso";
 import { FC, Suspense } from "preact/compat";
-import { useEffect, useMemo, useRef } from "preact/hooks";
+import { useEffect, useMemo } from "preact/hooks";
 import { DefaultLayout } from "~/layouts/default-layout";
 import { fetchWrap } from "~/utils/fetchWrap";
 import "./style.scss";
 import dayjs from "dayjs";
-import { promises } from "dns";
-import useDark from "~/hooks/useDark";
-import { useSignalEffect } from "@preact/signals";
-import { LinearFilter } from "three";
+import { urlToStatic } from "~/components/image";
 
 const fetchers: Record<string, () => { id: string; html: string }> = {};
 
@@ -31,7 +28,6 @@ function FetchWrapper(Element: FC) {
 function BlogPageImpl() {
 	const route = useRoute();
 	const location = useLocation();
-	const dark = useDark();
 	const id = useMemo(() => {
 		try {
 			return route.params.id ?? "";
@@ -42,7 +38,6 @@ function BlogPageImpl() {
 
 	const data = useMemo(() => fetchers[id]?.(), []);
 	const blog = useMemo(() => blogs.find((b) => b.id === id), []);
-	const linkRef = useRef<HTMLLinkElement>();
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -69,7 +64,12 @@ function BlogPageImpl() {
 				},
 			]}
 		>
-			<div class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner dark:text-stone-700">
+			<div
+				class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner dark:text-stone-700"
+				style={{
+					backgroundImage: `url(${urlToStatic("/images/nixos-wallpaper.png")})`,
+				}}
+			>
 				<div class="text-2xl">{blog.attributes.title}</div>
 				<div class="opacity-80">
 					{dayjs(blog.attributes["create-time"]).format("YYYY年MM月DD日")}

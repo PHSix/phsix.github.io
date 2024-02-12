@@ -4,6 +4,9 @@ enum FetchStatus {
 	success,
 }
 
+/**
+ * wrap fetch api for suspense support.
+ */
 export function fetchWrap<R = Response>(
 	url: string,
 	opts?: {
