@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "preact/compat";
 
-const staticServerPrefix = "http://43.139.5.94:5673";
+const staticServerPrefix = "";
 
 export function urlToStatic(url: string) {
 	return staticServerPrefix + url;

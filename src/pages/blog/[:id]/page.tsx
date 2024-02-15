@@ -1,14 +1,12 @@
 import blogs from "#blogs";
 import { useLocation, useRoute } from "preact-iso";
-import React, { FC, PropsWithChildren, Suspense } from "preact/compat";
+import { FC, PropsWithChildren, Suspense } from "preact/compat";
 import { useEffect, useMemo } from "preact/hooks";
 import { DefaultLayout } from "~/layouts/default-layout";
 import { fetchWrap } from "~/utils/fetchWrap";
 import "./style.scss";
 import dayjs from "dayjs";
-import { urlToStatic } from "~/components/image";
 import Markdown from "markdown-to-jsx";
-import { JSX, jsx } from "preact/jsx-runtime";
 import { InternalImg } from "./img";
 import { CodePre } from "./code-pre";
 import useDark from "~/hooks/useDark";
