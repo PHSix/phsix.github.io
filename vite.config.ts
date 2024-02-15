@@ -11,7 +11,7 @@ export default defineConfig({
 		preact({
 			prerender: {
 				enabled: true,
-				// additionalPrerenderRoutes: ["/bundler", "/blog"],
+				additionalPrerenderRoutes: ["/blog"],
 			},
 		}),
 
