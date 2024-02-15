@@ -2,14 +2,14 @@ import { useMemo } from "preact/hooks";
 import dayjs from "dayjs";
 import { DefaultLayout } from "~/layouts/default-layout";
 import blogs, { Blog as BlogType } from "#blogs";
-import { ClientComponent } from "~/components/client-component";
-import { urlToStatic } from "~/components/image";
+import useDark from "~/hooks/useDark";
 
 interface LocalBlogType extends BlogType {
 	date: string;
 }
 
 export default function Blog() {
+	const dark = useDark();
 	const blogsMap = useMemo(() => {
 		const ret: Record<string, LocalBlogType[]> = {};
 		for (const blog of blogs) {
@@ -38,11 +38,12 @@ export default function Blog() {
 				},
 			]}
 		>
-			{/* TODO: image holder*/}
 			<div
 				class="h-56 bg-cover bg-center rounded-xl"
 				style={{
-					backgroundImage: `url(${urlToStatic("/images/nixos-wallpaper.png")})`,
+					backgroundImage: `url(${
+						dark.value ? "/images/default-dark.png" : "/images/default.png"
+					})`,
 				}}
 			></div>
 			<div class="px-8 my-4">

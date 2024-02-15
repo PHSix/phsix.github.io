@@ -1,14 +1,19 @@
 import blogs from "#blogs";
 import { useLocation, useRoute } from "preact-iso";
-import { FC, Suspense } from "preact/compat";
+import React, { FC, PropsWithChildren, Suspense } from "preact/compat";
 import { useEffect, useMemo } from "preact/hooks";
 import { DefaultLayout } from "~/layouts/default-layout";
 import { fetchWrap } from "~/utils/fetchWrap";
 import "./style.scss";
 import dayjs from "dayjs";
 import { urlToStatic } from "~/components/image";
+import Markdown from "markdown-to-jsx";
+import { JSX, jsx } from "preact/jsx-runtime";
+import { InternalImg } from "./img";
+import { CodePre } from "./code-pre";
+import useDark from "~/hooks/useDark";
 
-const fetchers: Record<string, () => { id: string; html: string }> = {};
+const fetchers: Record<string, () => { id: string; content: string }> = {};
 
 // inited all fetchers, but not request at first time.
 for (const b of blogs) {
@@ -28,6 +33,7 @@ function FetchWrapper(Element: FC) {
 function BlogPageImpl() {
 	const route = useRoute();
 	const location = useLocation();
+	const dark = useDark();
 	const id = useMemo(() => {
 		try {
 			return route.params.id ?? "";
@@ -38,6 +44,30 @@ function BlogPageImpl() {
 
 	const data = useMemo(() => fetchers[id]?.(), []);
 	const blog = useMemo(() => blogs.find((b) => b.id === id), []);
+	// JSX.IntrinsicElements
+
+	const markdown = useMemo(
+		() => (
+			<Markdown
+				options={{
+					wrapper: (props: PropsWithChildren) => (
+						<div class="blog-page-content">{props.children}</div>
+					),
+					overrides: {
+						img: {
+							component: InternalImg,
+						},
+						pre: {
+							component: CodePre,
+						},
+					},
+				}}
+			>
+				{data.content}
+			</Markdown>
+		),
+		[]
+	);
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -65,9 +95,11 @@ function BlogPageImpl() {
 			]}
 		>
 			<div
-				class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner dark:text-stone-700"
+				class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner"
 				style={{
-					backgroundImage: `url(${urlToStatic("/images/nixos-wallpaper.png")})`,
+					backgroundImage: `url(${
+						dark.value ? "/images/default-dark.png" : "/images/default.png"
+					})`,
 				}}
 			>
 				<div class="text-2xl">{blog.attributes.title}</div>
@@ -75,10 +107,7 @@ function BlogPageImpl() {
 					{dayjs(blog.attributes["create-time"]).format("YYYY年MM月DD日")}
 				</div>
 			</div>
-			<div
-				class="blog-page-content"
-				dangerouslySetInnerHTML={{ __html: data.html }}
-			></div>
+			{markdown}
 		</DefaultLayout>
 	);
 }

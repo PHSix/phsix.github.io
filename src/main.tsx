@@ -1,6 +1,7 @@
 import { LocationProvider, Router, Route, hydrate } from "preact-iso";
 import "./index.css";
 import { FC, Suspense, lazy } from "preact/compat";
+import { NotFound } from "./pages/not-found/page";
 
 function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
 	const Element = lazy(loader);
@@ -14,7 +15,6 @@ function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
 }
 
 const Index = lazyLoadPage(() => import("~/pages/index/page"));
-const Bundler = lazyLoadPage(() => import("~/pages/bundler/page"));
 const Blog = lazyLoadPage(() => import("~/pages/blog/page"));
 const BlogPage = lazyLoadPage(() => import("~/pages/blog/[:id]/page"));
 
@@ -44,9 +44,10 @@ const App = (props: Partial<AppProps>) => {
 		<LocationProvider>
 			<Router>
 				<Route path="/" component={Index} />
-				<Route path="/bundler" component={Bundler} />
 				<Route path="/blog" component={Blog} />
 				<Route path="/blog/:id" component={BlogPage} />
+
+				<Route default component={NotFound} />
 			</Router>
 		</LocationProvider>
 	);

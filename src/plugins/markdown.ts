@@ -1,7 +1,6 @@
 import { Plugin } from "vite";
 import { resolve } from "path";
 import { access, mkdir, writeFile, readdir, readFile } from "fs/promises";
-import { marked } from "marked";
 import yaml from "yaml";
 import { BlogAttributes } from "#blogs";
 
@@ -24,24 +23,24 @@ const getAttributesAndContent = async (str: string) => {
 
 	return {
 		attributes,
-		htm: await marked(content),
+		content,
 	};
 };
 
 const getBlogs = async () => {
 	const blogFolder = resolve(process.cwd(), "blogs");
 	const dir = await readdir(blogFolder);
-	const htms: Record<string, string> = {};
+	const contents: Record<string, string> = {};
 
 	const files = dir.map(async (fileName) => {
 		const filePath = resolve(blogFolder, fileName);
 		const id = fileName.split(".").shift();
 
-		const { attributes, htm } = await getAttributesAndContent(
+		const { attributes, content } = await getAttributesAndContent(
 			(await readFile(filePath)).toString()
 		);
 
-		htms[id] = htm;
+		contents[id] = content;
 
 		return {
 			id,
@@ -52,19 +51,19 @@ const getBlogs = async () => {
 
 	return {
 		blogList: await Promise.all(files),
-		htms,
+		contents,
 	};
 };
 
 export function markdown(): Plugin {
 	let blogs = getBlogs();
 	let blogList = blogs.then((res) => res.blogList);
-	let htms = blogs.then((res) => res.htms);
+	let contents = blogs.then((res) => res.contents);
 
 	function update() {
 		blogs = getBlogs();
 		blogList = blogs.then((res) => res.blogList);
-		htms = blogs.then((res) => res.htms);
+		contents = blogs.then((res) => res.contents);
 	}
 
 	return {
@@ -78,12 +77,12 @@ export function markdown(): Plugin {
 				} catch {}
 
 				await Promise.all(
-					Object.entries(res.htms).map(([id, html]) =>
+					Object.entries(res.contents).map(([id, content]) =>
 						writeFile(
 							resolve(folder, `${id}.json`),
 							JSON.stringify({
 								id,
-								html,
+								content,
 							})
 						)
 					)
@@ -120,12 +119,12 @@ export function markdown(): Plugin {
 				if (req.url.match(blogReqUrlReg)) {
 					res.setHeader("Content-type", "application/json");
 					const id = req.url.slice(7, req.url.length - 5);
-					const htmsThen = await htms;
-					if (htmsThen[id]) {
+					const contentsThen = await contents;
+					if (contentsThen[id]) {
 						res.write(
 							JSON.stringify({
 								id,
-								html: htmsThen[id],
+								content: contentsThen[id],
 							})
 						);
 					} else {

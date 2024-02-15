@@ -52,6 +52,6 @@ export function hydrate(vnode, parentDom) {
 
 然后是`render-to-string`，这个过程在`preact`中涉及到好几个库，分别是：[preact-render-to-string](https://www.npmjs.com/package/preact-render-to-string)、[preact-iso](https://www.npmjs.com/package/preact-iso)和[@preact/preact-vite](https://www.npmjs.com/package/@preact/preset-vite)。它们之间的关系如下图所示：
 
-![图片]()
+![vite-preact](/public/images/vite-preact.png)
 
-总的来说就是`preact`将一套约定拆分的两个部分，一个是`vite`的打包器部分，另一个是用户声明代码的部分，两者都要遵循一套逻辑才能正常工作。
+总的来说就是`preact`将一套约定拆分的两个部分，一个是`vite`的打包器部分，另一个是用户声明代码的部分，两者都要遵循一套逻辑才能正常工作。在代码打包阶段，`vite`会去执行`prerender`函数并将 html 的渲染结果写到最后的 bundle 文件夹中，这样便实现了最简单的 ssg。

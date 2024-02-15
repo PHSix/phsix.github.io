@@ -18,11 +18,11 @@ export default function Index() {
 		<DefaultLayout
 			title="PH's Site"
 			links={[
-				// {
-				// 	url: "/blog",
-				// 	text: "/Blog",
-				// 	blank: true,
-				// },
+				{
+					url: "/blog",
+					text: "/Blog",
+					blank: true,
+				},
 				// {
 				// 	url: "/bundler",
 				// 	text: "/Bundler",

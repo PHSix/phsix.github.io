@@ -13,6 +13,7 @@
 		"dayjs": "^1.11.10",
 		"debounce": "^2.0.0",
 		"markd": "^1.2.0",
+		"markdown-to-jsx": "^7.4.1",
 		"marked": "^12.0.0",
 		"postprocessing": "7.0.0-alpha-1",
 		"preact": "^10.19.3",

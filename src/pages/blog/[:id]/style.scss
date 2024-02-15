@@ -70,12 +70,7 @@
 
 	pre[class*="language-"],
 	pre {
-		@apply w-full p-2;
-		background: none;
-		& > code {
-			background: none;
-			@apply bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96;
-		}
+		@apply w-full bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96 rounded-md;
 
 		code[class*="language-"],
 		code {
@@ -100,5 +95,13 @@
 
 	img {
 		@apply block text-center;
+	}
+
+	.code-pre-wrapper {
+		&:hover {
+			.code-anchor {
+				@apply opacity-100;
+			}
+		}
 	}
 }
