@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "preact/compat";
 import { highlight, languages } from "prismjs";
 import cx from "~/utils/cx";
-import { GithubLangToIcon } from "@altenull/github-lang-to-icon";
 import useDark from "~/hooks/useDark";
 import message from "~/components/message";
+import LangIcon from "./LangIcon";
 
 export default function CodePre(
 	props: PropsWithChildren<{ className?: string }>
@@ -38,7 +38,7 @@ export default function CodePre(
 					></code>
 				</pre>
 				<div className="absolute top-2 right-2 z-10 code-anchor duration-300 opacity-100 md:opacity-0 text-stone-500 select-none flex gap-2 items-center">
-					<GithubLangToIcon lang={lang as any} size={16} />
+					<LangIcon lang={lang as any} size={16} />
 					<span>{lang}</span>
 					<span>|</span>
 					<span
