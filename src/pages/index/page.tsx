@@ -23,13 +23,7 @@ export default function Index() {
 				{
 					url: "/blog",
 					text: "/Blog",
-					blank: true,
 				},
-				// {
-				// 	url: "/bundler",
-				// 	text: "/Bundler",
-				// 	blank: true,
-				// },
 				{
 					url: "https://github.com/PHSix",
 					text: "/Github",

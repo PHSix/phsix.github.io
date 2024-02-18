@@ -1,6 +1,6 @@
 import { useLocation, useRoute } from "preact-iso";
 import { FC, PropsWithChildren, Suspense } from "preact/compat";
-import { useEffect, useMemo } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 import dayjs from "dayjs";
 import Markdown from "markdown-to-jsx";
 import blogs from "#blogs";
@@ -10,6 +10,7 @@ import useDark from "~/hooks/useDark";
 import useTitle from "~/hooks/useTitle";
 import InternalImg from "./img";
 import CodePre from "./code-pre";
+import "prismjs/themes/prism.css";
 import "./style.scss";
 
 const fetchers: Record<string, () => { id: string; content: string }> = {};
@@ -21,7 +22,7 @@ for (const b of blogs) {
 	});
 }
 
-function FetchWrapper(Element: FC) {
+function suspenseWrap(Element: FC) {
 	return () => (
 		<Suspense fallback={null}>
 			<Element />
@@ -69,13 +70,6 @@ function BlogPageImpl() {
 		[]
 	);
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			import("prismjs");
-			import("prismjs/themes/prism.css");
-		}
-	}, []);
-
 	return (
 		<DefaultLayout
 			title="PH's Blog"
@@ -87,7 +81,6 @@ function BlogPageImpl() {
 					url: "/",
 					text: "/index",
 				},
-
 				{
 					url: "/blog",
 					text: "/blog",
@@ -95,7 +88,7 @@ function BlogPageImpl() {
 			]}
 		>
 			<div
-				class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner"
+				class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner flex-wrap"
 				style={{
 					backgroundImage: `url(${
 						dark.value ? "/images/default-dark.png" : "/images/default.png"
@@ -112,6 +105,6 @@ function BlogPageImpl() {
 	);
 }
 
-const BlogPage = FetchWrapper(BlogPageImpl);
+const BlogPage = suspenseWrap(BlogPageImpl);
 
 export default BlogPage;

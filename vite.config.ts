@@ -28,12 +28,10 @@ export default defineConfig({
 	},
 	build: {
 		rollupOptions: {
-			external: ["three", "prismjs"],
+			external: ["three"],
 			output: {
 				paths: {
 					three: "https://unpkg.com/three@0.161.0/build/three.module.js",
-					prismjs:
-						"https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js",
 				},
 			},
 		},

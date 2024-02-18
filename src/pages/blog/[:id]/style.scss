@@ -5,6 +5,7 @@
 }
 
 .blog-page-content {
+	@apply p-4 md:p-0;
 	font-size: 1em;
 	& > h1 {
 		font-size: 1.5em;
@@ -65,13 +66,16 @@
 	}
 
 	pre[class*="language-"],
+	pre[class*="lang-"],
 	pre {
 		@apply w-full bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96 rounded-md;
 		scrollbar-color: rgb(68 64 60) rgb(231 229 228);
 
 		code[class*="language-"],
+		code[class*="lang-"],
 		code {
 			text-shadow: none;
+			background: none;
 		}
 	}
 

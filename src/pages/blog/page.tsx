@@ -10,6 +10,7 @@ interface LocalBlogType extends BlogType {
 }
 
 export default function Blog() {
+	useTitle("PH's Blog");
 	const dark = useDark();
 	const blogsMap = useMemo(() => {
 		const ret: Record<string, LocalBlogType[]> = {};
