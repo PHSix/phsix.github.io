@@ -7,7 +7,7 @@ enum FetchStatus {
 /**
  * wrap fetch api for suspense support.
  */
-export function fetchWrap<R = Response>(
+export default function fetchWrap<R = Response>(
 	url: string,
 	opts?: {
 		init?: RequestInit;

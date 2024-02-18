@@ -7,7 +7,7 @@ function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
 	const Element = lazy(loader);
 
 	return () => (
-		<Suspense fallback={"null"}>
+		<Suspense fallback={null}>
 			{/* @ts-ignore */}
 			<Element />
 		</Suspense>

@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@altenull/github-lang-to-icon": "^1.0.1",
 		"@preact/signals": "^1.2.2",
 		"dayjs": "^1.11.10",
 		"debounce": "^2.0.0",

@@ -1,6 +1,6 @@
 import useDark from "~/hooks/useDark";
 
-export function ThemeSwitch() {
+export default function ThemeSwitch() {
 	const dark = useDark();
 
 	if (!dark.value) {

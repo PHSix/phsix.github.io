@@ -11,7 +11,7 @@ export interface LinkProps {
 /**
  * use for default layout link component
  */
-export function Link(props: LinkProps) {
+export default function Link(props: LinkProps) {
 	return (
 		<a
 			class={cx("hover:text-stone-300", props.class)}

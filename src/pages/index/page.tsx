@@ -1,4 +1,4 @@
-import { Card } from "./card";
+import ClientComponent from "~/components/client-component";
 import {
 	GithubIcon,
 	NeovimIcon,
@@ -9,11 +9,13 @@ import {
 	ThreejsIcon,
 	TypescriptIcon,
 } from "~/components/icon";
-import { Tooltip } from "./tooltip";
-import { ClientComponent } from "~/components/client-component";
-import { DefaultLayout } from "~/layouts/default-layout";
+import DefaultLayout from "~/layouts/default-layout";
+import useTitle from "~/hooks/useTitle";
+import Card from "./card";
+import Tooltip from "./tooltip";
 
 export default function Index() {
+	useTitle("PH's site");
 	return (
 		<DefaultLayout
 			title="PH's Site"

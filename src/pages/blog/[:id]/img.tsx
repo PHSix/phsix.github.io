@@ -1,4 +1,4 @@
-export function InternalImg(props: {
+export default function InternalImg(props: {
 	className?: string;
 	alt?: string;
 	src?: string;

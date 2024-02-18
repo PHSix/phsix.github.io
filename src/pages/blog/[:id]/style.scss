@@ -6,42 +6,38 @@
 
 .blog-page-content {
 	font-size: 1em;
-}
+	& > h1 {
+		font-size: 1.5em;
 
-.blog-page-content > h1 {
-	font-size: 1.5em;
-
-	&::after {
-		content: "";
-		height: 1px;
-		@apply w-full block bg-stone-300;
+		&::after {
+			content: "";
+			height: 1px;
+			@apply w-full block bg-stone-300;
+		}
 	}
-}
-
-.blog-page-content > h2 {
-	font-size: 1.3em;
-	&::after {
-		content: "";
-		height: 1px;
-		@apply w-full block bg-stone-300/90;
+	& > h2 {
+		font-size: 1.3em;
+		&::after {
+			content: "";
+			height: 1px;
+			@apply w-full block bg-stone-300/90;
+		}
 	}
-}
 
-.blog-page-content > h3 {
-	font-size: 1.2em;
+	& > h3 {
+		font-size: 1.2em;
 
-	&::after {
-		content: "";
-		height: 1px;
-		@apply w-full block bg-stone-300/70;
+		&::after {
+			content: "";
+			height: 1px;
+			@apply w-full block bg-stone-300/70;
+		}
 	}
-}
 
-.blog-page-content > p {
-	text-indent: 2rem;
-}
+	& > p {
+		text-indent: 2rem;
+	}
 
-.blog-page-content {
 	& > ol {
 		list-style-type: decimal;
 		list-style-position: inside;
@@ -71,6 +67,7 @@
 	pre[class*="language-"],
 	pre {
 		@apply w-full bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96 rounded-md;
+		scrollbar-color: rgb(68 64 60) rgb(231 229 228);
 
 		code[class*="language-"],
 		code {
@@ -103,5 +100,9 @@
 				@apply opacity-100;
 			}
 		}
+	}
+
+	.darkModePre {
+		scrollbar-color: rgb(231 229 228) rgb(68 64 60) !important;
 	}
 }

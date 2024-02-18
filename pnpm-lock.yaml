@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@altenull/github-lang-to-icon':
+    specifier: ^1.0.1
+    version: 1.0.1(react@18.2.0)
   '@preact/signals':
     specifier: ^1.2.2
     version: 1.2.2(preact@10.19.3)
@@ -95,6 +98,14 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
     dev: true
+
+  /@altenull/github-lang-to-icon@1.0.1(react@18.2.0):
+    resolution: {integrity: sha512-MwlD9+dwloJxKfEqeguv2aNDtp09GTvEeSVSapDMXm6YDthMf/RQ1jfAVGbv06uLc1eUG4R6VSgMJEQ6fm1myw==}
+    peerDependencies:
+      react: ^17.0.2 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}

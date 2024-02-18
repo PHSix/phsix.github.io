@@ -1,8 +1,9 @@
 import { useMemo } from "preact/hooks";
 import dayjs from "dayjs";
-import { DefaultLayout } from "~/layouts/default-layout";
+import DefaultLayout from "~/layouts/default-layout";
 import blogs, { Blog as BlogType } from "#blogs";
 import useDark from "~/hooks/useDark";
+import useTitle from "~/hooks/useTitle";
 
 interface LocalBlogType extends BlogType {
 	date: string;
@@ -27,6 +28,8 @@ export default function Blog() {
 
 		return ret;
 	}, []);
+
+	useTitle("PH's Blog");
 
 	return (
 		<DefaultLayout

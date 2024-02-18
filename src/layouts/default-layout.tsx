@@ -4,15 +4,16 @@ import {
 	useEffect,
 	useState,
 } from "preact/compat";
-import { ThemeSwitch } from "~/components/theme-switch";
-import { LinkProps, Link } from "~/components/Link";
+import { useSignal } from "@preact/signals";
 import debounce from "debounce";
-import { PopupLinks } from "./popup-links";
+import ThemeSwitch from "~/components/theme-switch";
+import Link, { LinkProps } from "~/components/Link";
+import PopupLinks from "./popup-links";
 
 const getIsMd = () =>
 	typeof window === "undefined" ? true : window.innerWidth < 768;
 
-export function DefaultLayout(
+export default function DefaultLayout(
 	props: PropsWithChildren<{
 		title?: string;
 		links?: LinkProps[];
@@ -20,7 +21,7 @@ export function DefaultLayout(
 	}>
 ) {
 	const [isMd, setIsMd] = useState(getIsMd);
-	const [showMenu, setShowMenu] = useState(false);
+	const showMenu = useSignal(false);
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
@@ -47,14 +48,18 @@ export function DefaultLayout(
 						<Fragment>
 							<div
 								class="cursor-pointer"
-								onClick={() => setShowMenu(!showMenu)}
+								onClick={() => {
+									showMenu.value = true;
+								}}
 							>
 								🔗
 							</div>
 							<PopupLinks
-								visiable={showMenu}
+								visible={showMenu}
 								links={props.links}
-								onClose={() => setShowMenu(false)}
+								onClose={() => {
+									showMenu.value = false;
+								}}
 							/>
 						</Fragment>
 					) : (

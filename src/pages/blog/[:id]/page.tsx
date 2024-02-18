@@ -1,15 +1,16 @@
-import blogs from "#blogs";
 import { useLocation, useRoute } from "preact-iso";
 import { FC, PropsWithChildren, Suspense } from "preact/compat";
 import { useEffect, useMemo } from "preact/hooks";
-import { DefaultLayout } from "~/layouts/default-layout";
-import { fetchWrap } from "~/utils/fetchWrap";
-import "./style.scss";
 import dayjs from "dayjs";
 import Markdown from "markdown-to-jsx";
-import { InternalImg } from "./img";
-import { CodePre } from "./code-pre";
+import blogs from "#blogs";
+import DefaultLayout from "~/layouts/default-layout";
+import fetchWrap from "~/utils/fetchWrap";
 import useDark from "~/hooks/useDark";
+import useTitle from "~/hooks/useTitle";
+import InternalImg from "./img";
+import CodePre from "./code-pre";
+import "./style.scss";
 
 const fetchers: Record<string, () => { id: string; content: string }> = {};
 
@@ -42,6 +43,7 @@ function BlogPageImpl() {
 
 	const data = useMemo(() => fetchers[id]?.(), []);
 	const blog = useMemo(() => blogs.find((b) => b.id === id), []);
+	useTitle(blog.attributes.title);
 	// JSX.IntrinsicElements
 
 	const markdown = useMemo(

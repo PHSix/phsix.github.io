@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "preact/compat";
 import cx from "~/utils/cx";
 
-export function Button(
+export default function Button(
 	props: PropsWithChildren<{
 		primary?: boolean;
 		class?: string;
