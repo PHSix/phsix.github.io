@@ -4,13 +4,16 @@ import DefaultLayout from "~/layouts/default-layout";
 import blogs, { Blog as BlogType } from "#blogs";
 import useDark from "~/hooks/useDark";
 import useTitle from "~/hooks/useTitle";
+import useHead from "~/hooks/useHead";
 
 interface LocalBlogType extends BlogType {
 	date: string;
 }
 
 export default function Blog() {
-	useTitle("PH's Blog");
+	useHead({
+		title: "PH's Blog",
+	});
 	const dark = useDark();
 	const blogsMap = useMemo(() => {
 		const ret: Record<string, LocalBlogType[]> = {};

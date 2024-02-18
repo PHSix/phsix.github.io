@@ -49,7 +49,7 @@ function getUuid() {
 function MessageComponent() {
 	return (
 		<>
-			{msgs.value.map((msg, index, self) => (
+			{msgs.value.map((msg) => (
 				<div
 					key={msg.uuid}
 					class="px-4 py-1 bg-slate-100 dark:bg-stone-700 rounded flex items-center gap-2"

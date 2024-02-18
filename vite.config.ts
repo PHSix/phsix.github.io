@@ -1,13 +1,15 @@
 import { defineConfig } from "vite";
 import preact from "@preact/preset-vite";
 import { resolve } from "path";
-import { markdown } from "./src/plugins/markdown";
+import markdown from "./src/plugins/markdown";
+import fsRouter from "./src/plugins/fs-router";
 // import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
 		markdown(),
+		fsRouter(),
 		preact({
 			prerender: {
 				enabled: true,

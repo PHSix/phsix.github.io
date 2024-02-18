@@ -14,3 +14,9 @@ declare module "#blogs" {
 
 	export default blogs;
 }
+
+declare module "#router" {
+	import { FC } from "preact/compat";
+	const FsRouter: FC;
+	export default FsRouter;
+}

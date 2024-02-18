@@ -27,5 +27,6 @@
 	bottom: 1rem;
 	gap: 0.6rem;
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
+	z-index: 10;
 }

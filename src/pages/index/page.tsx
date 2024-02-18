@@ -10,12 +10,14 @@ import {
 	TypescriptIcon,
 } from "~/components/icon";
 import DefaultLayout from "~/layouts/default-layout";
-import useTitle from "~/hooks/useTitle";
 import Card from "./card";
 import Tooltip from "./tooltip";
+import useHead from "~/hooks/useHead";
 
 export default function Index() {
-	useTitle("PH's site");
+	useHead({
+		title: "PH's Site",
+	});
 	return (
 		<DefaultLayout
 			title="PH's Site"

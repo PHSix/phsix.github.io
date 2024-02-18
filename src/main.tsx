@@ -1,22 +1,6 @@
-import { LocationProvider, Router, Route, hydrate } from "preact-iso";
+import { hydrate } from "preact-iso";
+import FsRouter from "#router";
 import "./index.css";
-import { FC, Suspense, lazy } from "preact/compat";
-import { NotFound } from "./pages/not-found/page";
-
-function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
-	const Element = lazy(loader);
-
-	return () => (
-		<Suspense fallback={null}>
-			{/* @ts-ignore */}
-			<Element />
-		</Suspense>
-	);
-}
-
-const Index = lazyLoadPage(() => import("~/pages/index/page"));
-const Blog = lazyLoadPage(() => import("~/pages/blog/page"));
-const BlogPage = lazyLoadPage(() => import("~/pages/blog/[:id]/page"));
 
 interface AppProps {
 	ssr: boolean;
@@ -40,17 +24,7 @@ const ssrLog = (props: unknown) => {
 const App = (props: Partial<AppProps>) => {
 	ssrLog(props);
 
-	return (
-		<LocationProvider>
-			<Router>
-				<Route path="/" component={Index} />
-				<Route path="/blog" component={Blog} />
-				<Route path="/blog/:id" component={BlogPage} />
-
-				<Route default component={NotFound} />
-			</Router>
-		</LocationProvider>
-	);
+	return <FsRouter />;
 };
 
 if (typeof window !== "undefined") {
@@ -58,7 +32,7 @@ if (typeof window !== "undefined") {
 }
 
 export async function prerender(data: any) {
-	return await import("~/utils/ssr").then(({ default: ssr }) => {
-		return ssr(<App {...data} />, {});
+	return await import("~/utils/prerender").then(({ default: ssr }) => {
+		return ssr(<App {...data} />);
 	});
 }

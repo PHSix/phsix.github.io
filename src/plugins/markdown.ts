@@ -55,7 +55,7 @@ const getBlogs = async () => {
 	};
 };
 
-export function markdown(): Plugin {
+export default function markdown(): Plugin {
 	let blogs = getBlogs();
 	let blogList = blogs.then((res) => res.blogList);
 	let contents = blogs.then((res) => res.contents);
@@ -67,7 +67,7 @@ export function markdown(): Plugin {
 	}
 
 	return {
-		name: "markdown-plugin",
+		name: "vite:markdown-plugin",
 		enforce: "pre",
 		async buildStart() {
 			return blogs.then(async (res) => {
@@ -90,19 +90,18 @@ export function markdown(): Plugin {
 			});
 		},
 		async resolveId(source) {
-			try {
-				await access(cacheDir);
-			} catch {
-				await mkdir(cacheDir, { recursive: true });
-			}
-
-			try {
-				await access(blogListFile);
-			} catch {
-				await writeFile(blogListFile, JSON.stringify(await blogList));
-			}
-
 			if (source === "#blogs") {
+				try {
+					await access(cacheDir);
+				} catch {
+					await mkdir(cacheDir, { recursive: true });
+				}
+
+				try {
+					await access(blogListFile);
+				} catch {
+					await writeFile(blogListFile, JSON.stringify(await blogList));
+				}
 				return blogListFile;
 			}
 		},
