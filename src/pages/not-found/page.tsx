@@ -1,6 +1,6 @@
 import Button from "~/components/button";
 
-export function NotFound() {
+export default function NotFound() {
 	return (
 		<main class="flex h-screen w-screen items-center pt-[30vh] flex-col gap-8">
 			<div>

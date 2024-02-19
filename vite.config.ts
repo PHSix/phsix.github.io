@@ -13,7 +13,7 @@ export default defineConfig({
 		preact({
 			prerender: {
 				enabled: true,
-				additionalPrerenderRoutes: ["/blog"],
+				additionalPrerenderRoutes: ["/blog", "/not-found"],
 			},
 		}),
 

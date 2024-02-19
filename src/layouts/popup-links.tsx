@@ -1,4 +1,4 @@
-import { Signal, useSignal } from "@preact/signals";
+import { Signal } from "@preact/signals";
 import Link, { LinkProps } from "~/components/Link";
 import { Modal } from "~/components/modal";
 
