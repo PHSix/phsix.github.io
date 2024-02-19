@@ -1,4 +1,4 @@
-import { signal, useSignalEffect, useSignal } from "@preact/signals";
+import { signal } from "@preact/signals";
 import { render } from "preact";
 
 const isServer = typeof window === "undefined";

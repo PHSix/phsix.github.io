@@ -12,50 +12,53 @@ type ScanedItem = {
 	lazy: boolean;
 };
 
+const defaultConfig = {
+	lazy: true,
+	disable: false,
+};
+
 const template = (routes: ScanedItem[]) => {
-	return `
-  import * as React from "preact";
-  import { LocationProvider, Router, Route, hydrate } from "preact-iso";
-  import { FC, Suspense, lazy } from "preact/compat";
+	return `import * as React from "preact";
+import { LocationProvider, Router, Route, hydrate } from "preact-iso";
+import { FC, Suspense, lazy } from "preact/compat";
 
-  ${routes
-		.filter((route) => route.lazy === false)
-		.map((route) => `import ${route.componentName} from "${route.modulePath}"`)
-		.join("\n")}
+${routes
+	.filter((route) => route.lazy === false)
+	.map((route) => `import ${route.componentName} from "${route.modulePath}"`)
+	.join("\n")}
 
-  ${routes
-		.filter((route) => route.lazy === true)
-		.map(
-			(route) =>
-				`const ${route.componentName} =  lazyLoadPage(() => import("${route.modulePath}"))`
-		)
-		.join("\n")}
+${routes
+	.filter((route) => route.lazy === true)
+	.map(
+		(route) =>
+			`const ${route.componentName} = lazyLoadPage(() => import("${route.modulePath}"))`
+	)
+	.join("\n")}
 
-  function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
-    const Element = lazy(loader);
+function lazyLoadPage<T extends FC>(loader: () => Promise<{ default: T } | T>) {
+  const Element = lazy(loader);
 
-    return () => (
-      <Suspense fallback={null}>
-        {/* @ts-ignore */}
-        <Element />
-      </Suspense>
-    );
-  }
+  return () => (
+    <Suspense fallback={null}>
+      {/* @ts-ignore */}
+      <Element />
+    </Suspense>
+  );
+}
 
-  export default function FsRouter() {
-    return (
-      <LocationProvider>
-        <Router>
-          ${routes
-						.map((route) => {
-							return `<Route path="${route.routePath}" component={${route.componentName}} />`;
-						})
-						.join("\n")}
-        </Router>
-      </LocationProvider>
-    )
-  }
-  `;
+export default function FsRouter() {
+  return (
+    <LocationProvider>
+      <Router>
+        ${routes
+					.map((route) => {
+						return `<Route path="${route.routePath}" component={${route.componentName}} />`;
+					})
+					.join("\n        ")}
+      </Router>
+    </LocationProvider>
+  )
+}`;
 };
 
 const scanRoutes = async (
@@ -84,7 +87,7 @@ const scanRoutes = async (
 		// remove end `page.tsx`
 		routePath = routePath.slice(0, routePath.length - 8);
 		// replace param args
-		routePath = routePath.replace("[", "").replace("]", "");
+		routePath = routePath.replace(/(\[|\])/g, "");
 		// replace `index/`
 		routePath = routePath.replace("index/", "");
 
@@ -99,26 +102,27 @@ const scanRoutes = async (
 				return a.toUpperCase();
 			});
 
-		let lazy = true;
-		let disable = false;
+		const config: typeof defaultConfig = JSON.parse(
+			JSON.stringify(defaultConfig)
+		);
 		if (files.includes("page.config.js")) {
-			const config = await import(
+			const pageConfig = await import(
 				`file://${resolve(dirPath, "page.config.js")}`
 			).then((res) => res.default);
-			disable = config.disable ?? disable;
-			lazy = !config.disableLazy;
+			Object.assign(defaultConfig, pageConfig);
 		}
 
-		if (!disable) {
+		if (!config.disable) {
 			ret.push({
 				modulePath,
 				routePath: routePath,
 				componentName,
-				lazy,
+				lazy: config.lazy,
 			});
 		}
 	}
 
+	// recursive scan directory under dirPath
 	await Promise.all(
 		dirs.map(async (f) => {
 			return scanRoutes(resolve(dirPath, f), projectPath + "/" + f).then(
