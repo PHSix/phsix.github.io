@@ -1,30 +1,30 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from 'preact/hooks'
 
-type Head = {
-	title: string;
-	lang: string;
-};
+interface Head {
+  title: string
+  lang: string
+}
 
 const heads: Head[] = [
-	{
-		title: "Site",
-		lang: "en",
-	},
-];
+  {
+    title: 'Site',
+    lang: 'en',
+  },
+]
 
 export default function useHead(head: Partial<Head>) {
-	useState(() => {
-		const lastHead = getHead();
-		heads.push(Object.assign({ ...lastHead }, head));
-	});
+  useState(() => {
+    const lastHead = getHead()
+    heads.push(Object.assign({ ...lastHead }, head))
+  })
 
-	useEffect(() => {
-		return () => {
-			heads.pop();
-		};
-	}, []);
+  useEffect(() => {
+    return () => {
+      heads.pop()
+    }
+  }, [])
 }
 
 export function getHead() {
-	return heads[heads.length - 1];
+  return heads[heads.length - 1]
 }

@@ -1,3 +1,3 @@
 export default {
-	lazy: false,
-};
+  lazy: false,
+}

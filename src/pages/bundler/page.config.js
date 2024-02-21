@@ -1,4 +1,4 @@
 export default {
-	disable: true,
-	disableLazy: true,
-};
+  disable: true,
+  disableLazy: true,
+}
