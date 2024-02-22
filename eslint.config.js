@@ -7,5 +7,6 @@ export default antfu({
   },
   rules: {
     'style/brace-style': ['warn', '1tbs'],
+    'no-console': ['off'],
   },
 })

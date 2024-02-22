@@ -4,6 +4,7 @@ import LangIcon from './LangIcon'
 import cx from '~/utils/cx'
 import useDark from '~/hooks/useDark'
 import message from '~/components/message'
+import 'prismjs/themes/prism.min.css'
 
 export default function CodePre(
   props: PropsWithChildren<{ className?: string }>,
@@ -19,16 +20,16 @@ export default function CodePre(
       ? props.children.props.className?.replace?.('lang-', '')
       : 'text'
 
-    const code: string = props.children.props.children
-    let content = code || ''
+    const code: string = props.children.props.children || ''
+    let content = code
     if (lang in languages)
       content = highlight(code, languages[lang], lang)
 
     return (
-      <div class="relative code-pre-wrapper">
+      <div class="relative pre">
         <pre
           className={cx(props.children.props.className, {
-					  darkModePre: dark.value,
+            darkModePre: dark.value,
           })}
         >
           <code
@@ -37,6 +38,7 @@ export default function CodePre(
           >
           </code>
         </pre>
+
         <div className="absolute top-2 right-2 z-10 code-anchor duration-300 opacity-100 md:opacity-0 text-stone-500 select-none flex gap-2 items-center">
           <LangIcon lang={lang as any} size={16} />
           <span>{lang}</span>
@@ -44,10 +46,7 @@ export default function CodePre(
           <span
             class="cursor-pointer hover:text-orange-500"
             onClick={() => {
-						  if (!code)
-                return
-
-						  navigator.clipboard.writeText(code)
+              navigator.clipboard.writeText(code)
               message.success('复制成功')
             }}
           >

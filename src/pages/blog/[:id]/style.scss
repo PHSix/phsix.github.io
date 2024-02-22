@@ -1,112 +1,110 @@
 .blog-page-banner {
-	background-size: cover;
-	background-position: center;
-	@apply p-4 rounded-xl;
+  background-size: cover;
+  background-position: center;
+  @apply p-4 rounded-xl;
 }
 
 .blog-page-content {
-	@apply p-4 md:p-0;
-	font-size: 1em;
-	& > h1 {
-		font-size: 1.5em;
+  @apply p-4 md:p-0;
+  font-size: 1em;
+  & > h1 {
+    font-size: 1.5em;
 
-		&::after {
-			content: "";
-			height: 1px;
-			@apply w-full block bg-stone-300;
-		}
-	}
-	& > h2 {
-		font-size: 1.3em;
-		&::after {
-			content: "";
-			height: 1px;
-			@apply w-full block bg-stone-300/90;
-		}
-	}
+    &::after {
+      content: "";
+      height: 1px;
+      @apply w-full block bg-stone-300;
+    }
+  }
+  & > h2 {
+    font-size: 1.3em;
+    &::after {
+      content: "";
+      height: 1px;
+      @apply w-full block bg-stone-300/90;
+    }
+  }
 
-	& > h3 {
-		font-size: 1.2em;
+  & > h3 {
+    font-size: 1.2em;
 
-		&::after {
-			content: "";
-			height: 1px;
-			@apply w-full block bg-stone-300/70;
-		}
-	}
+    &::after {
+      content: "";
+      height: 1px;
+      @apply w-full block bg-stone-300/70;
+    }
+  }
 
-	& > p {
-		text-indent: 2rem;
-	}
+  & > p {
+    text-indent: 2rem;
+  }
 
-	& > ol {
-		list-style-type: decimal;
-		list-style-position: inside;
-	}
+  & > ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+  }
 
-	& > ul {
-		list-style-type: square;
-		list-style-position: inside;
-	}
+  & > ul {
+    list-style-type: square;
+    list-style-position: inside;
+  }
 
-	& > p {
-		@apply my-4;
-	}
+  & > p {
+    @apply my-4;
+  }
 
-	li {
-		text-indent: 2rem;
-		&::marker {
-			position: relative;
-		}
-	}
+  li {
+    text-indent: 2rem;
+    &::marker {
+      position: relative;
+    }
+  }
 
-	code {
-		@apply px-1 inline-block bg-red-50 rounded text-left box-border mx-[4px] dark:bg-stone-700/80 dark:text-stone-200;
-		text-indent: 0;
-	}
+  code {
+    @apply px-1 inline-block bg-red-50 rounded text-left box-border mx-[4px] dark:bg-stone-700/80 dark:text-stone-200;
+    text-indent: 0;
+  }
 
-	pre[class*="language-"],
-	pre[class*="lang-"],
-	pre {
-		@apply w-full bg-stone-200 dark:bg-stone-700 p-2 block overflow-scroll max-h-96 rounded-md;
-		scrollbar-color: rgb(68 64 60) rgb(231 229 228);
+  pre[class*="language-"],
+  pre[class*="lang-"],
+  pre {
+    @apply w-full bg-stone-200 dark:bg-neutral-700 p-2 block overflow-scroll max-h-96 rounded-md min-h-4;
+    scrollbar-color: rgb(68 64 60) rgba(0, 0, 0, 0);
 
-		code[class*="language-"],
-		code[class*="lang-"],
-		code {
-			text-shadow: none;
-			background: none;
-		}
-	}
+    code[class*="language-"],
+    code[class*="lang-"],
+    code {
+      text-shadow: none;
+      background: none;
+    }
+  }
 
-	a {
-		@apply p-0 px-1 relative;
+  a {
+    @apply p-0 px-1 relative;
 
-		&:visited {
-			@apply text-stone-600 dark:text-stone-400;
-		}
+    &:visited {
+      @apply text-stone-600 dark:text-stone-400;
+    }
 
-		&::after {
-			content: "";
-			left: 0;
-			bottom: 0;
-			@apply w-full absolute h-[1px] bg-stone-700 dark:bg-stone-200;
-		}
-	}
+    &::after {
+      content: "";
+      left: 0;
+      bottom: 0;
+      @apply w-full absolute h-[1px] bg-stone-700 dark:bg-stone-200;
+    }
+  }
 
-	img {
-		@apply block text-center;
-	}
+  img {
+    @apply block text-center;
+  }
 
-	.code-pre-wrapper {
-		&:hover {
-			.code-anchor {
-				@apply opacity-100;
-			}
-		}
-	}
+  .pre:hover {
+    .code-anchor {
+      @apply opacity-100;
+    }
+  }
 
-	.darkModePre {
-		scrollbar-color: rgb(231 229 228) rgb(68 64 60) !important;
-	}
+  .darkModePre {
+    scrollbar-color: rgb(231 229 228) rgba(0, 0, 0, 0) !important;
+  }
 }

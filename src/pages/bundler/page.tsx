@@ -40,7 +40,7 @@ export default function Bundler() {
         <input
           class="bg-stone-200 text-2xl p-4 rounded-md"
           onInput={(event) => {
-					  text.value = event.currentTarget.value
+            text.value = event.currentTarget.value
           }}
         />
       </div>

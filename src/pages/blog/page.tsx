@@ -4,7 +4,6 @@ import DefaultLayout from '~/layouts/default-layout'
 import type { Blog as BlogType } from '#blogs'
 import blogs from '#blogs'
 import useDark from '~/hooks/useDark'
-import useTitle from '~/hooks/useTitle'
 import useHead from '~/hooks/useHead'
 
 interface LocalBlogType extends BlogType {
@@ -34,24 +33,20 @@ export default function Blog() {
     return ret
   }, [])
 
-  useTitle('PH\'s Blog')
-
   return (
     <DefaultLayout
       title="PH's Blog"
       links={[
-			  {
-			    url: '/',
-			    text: '/index',
-			  },
+        {
+          url: '/',
+          text: '/index',
+        },
       ]}
     >
       <div
         class="h-56 bg-cover bg-center rounded-xl"
         style={{
-				  backgroundImage: `url(${
-						dark.value ? '/images/default-dark.png' : '/images/default.png'
-					})`,
+          backgroundImage: dark.value ? 'url(/images/default-dark.png)' : 'url(/images/default.png)',
         }}
       >
       </div>

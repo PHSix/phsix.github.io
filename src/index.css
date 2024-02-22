@@ -3,30 +3,30 @@
 @tailwind utilities;
 
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 
-	font-family: Macon, Monaco, monaco, Consolas, Lucida Console, monospace;
+  font-family: Macon, Monaco, monaco, Consolas, Lucida Console, monospace;
 }
 
 .title {
-	font-size: 1.6em;
+  font-size: 1.6em;
 }
 
 .tooltip > .tooltip-child {
-	display: none;
+  display: none;
 }
 
 .tooltip:hover > .tooltip-child {
-	display: block;
+  display: block;
 }
 
 .message-container {
-	position: fixed;
-	left: 1rem;
-	bottom: 1rem;
-	gap: 0.6rem;
-	display: flex;
-	flex-direction: column-reverse;
-	z-index: 10;
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  gap: 0.6rem;
+  display: flex;
+  flex-direction: column-reverse;
+  z-index: 10;
 }

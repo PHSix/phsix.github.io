@@ -11,7 +11,6 @@ import DefaultLayout from '~/layouts/default-layout'
 import fetchWrap from '~/utils/fetchWrap'
 import useDark from '~/hooks/useDark'
 import useTitle from '~/hooks/useTitle'
-import 'prismjs/themes/prism.css'
 import './style.scss'
 
 const fetchers: Record<string, () => { id: string, content: string }> = {}
@@ -52,17 +51,17 @@ function BlogPageImpl() {
     () => (
       <Markdown
         options={{
-				  wrapper: (props: PropsWithChildren) => (
-  <div class="blog-page-content">{props.children}</div>
-				  ),
-				  overrides: {
-				    img: {
-				      component: InternalImg,
-				    },
-				    pre: {
-				      component: CodePre,
-				    },
-				  },
+          wrapper: (props: PropsWithChildren) => (
+            <div class="blog-page-content">{props.children}</div>
+          ),
+          overrides: {
+            img: {
+              component: InternalImg,
+            },
+            pre: {
+              component: CodePre,
+            },
+          },
         }}
       >
         {data.content}
@@ -75,25 +74,23 @@ function BlogPageImpl() {
     <DefaultLayout
       title="PH's Blog"
       onTitleClick={() => {
-			  location.route('/blog')
+        location.route('/blog')
       }}
       links={[
-			  {
-			    url: '/',
-			    text: '/index',
-			  },
-			  {
-			    url: '/blog',
-			    text: '/blog',
-			  },
+        {
+          url: '/',
+          text: '/index',
+        },
+        {
+          url: '/blog',
+          text: '/blog',
+        },
       ]}
     >
       <div
         class="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between blog-page-banner flex-wrap"
         style={{
-				  backgroundImage: `url(${
-						dark.value ? '/images/default-dark.png' : '/images/default.png'
-					})`,
+          backgroundImage: `url(${dark.value ? '/images/default-dark.png' : '/images/default.png'})`,
         }}
       >
         <div class="text-2xl">{blog.attributes.title}</div>

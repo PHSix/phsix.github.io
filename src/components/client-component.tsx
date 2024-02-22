@@ -5,7 +5,7 @@ import { Suspense, lazy, useState } from 'preact/compat'
  * promise your component only run on client side, no auto execute and import lib in prerender(ssg) runtime.
  * implement with code split
  */
-export default function ClientComponent<P extends object = {}>(props: {
+export default function ClientComponent<P extends object>(props: {
   component: () => Promise<{ default: FC<P> } | FC<P>>
   componentProps: P
 }) {

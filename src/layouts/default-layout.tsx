@@ -55,22 +55,22 @@ export default function DefaultLayout(
                 <div
                   class="cursor-pointer"
                   onClick={() => {
-								  showMenu.value = true
-                }}
+                    showMenu.value = true
+                  }}
                 >
-                🔗
+                  🔗
                 </div>
                 <PopupLinks
                   visible={showMenu}
                   links={props.links}
                   onClose={() => {
-								  showMenu.value = false
-                }}
+                    showMenu.value = false
+                  }}
                 />
               </Fragment>
               )
             : (
-					  props.links?.map(link => <Link {...link} key={link.text} />)
+                props.links?.map(link => <Link {...link} key={link.text} />)
               )}
           <ThemeSwitch />
         </div>

@@ -12,7 +12,7 @@ export default function ThemeSwitch() {
         class="cursor-pointer"
         viewBox="0 0 256 256"
         onClick={() => {
-				  dark.value = !dark.value
+          dark.value = !dark.value
         }}
       >
         <path
@@ -32,7 +32,7 @@ export default function ThemeSwitch() {
       viewBox="0 0 24 24"
       class="cursor-pointer"
       onClick={() => {
-			  dark.value = !dark.value
+        dark.value = !dark.value
       }}
     >
       <path

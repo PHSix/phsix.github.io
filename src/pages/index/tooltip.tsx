@@ -18,7 +18,7 @@ export default function Tooltip(
       <div
         class="cursor-pointer"
         onClick={() => {
-				  visible.value = true
+          visible.value = true
         }}
       >
         {props.children}
@@ -27,7 +27,7 @@ export default function Tooltip(
       <Modal
         visible={visible}
         onClose={() => {
-				  visible.value = false
+          visible.value = false
         }}
         className="w-[70vw] md:w-[50vw]"
       >
@@ -36,14 +36,14 @@ export default function Tooltip(
           <Button
             primary
             onClick={() => {
-						  window.open(props.url, '_blank')
+              window.open(props.url, '_blank')
             }}
           >
             Yes
           </Button>
           <Button
             onClick={() => {
-						  visible.value = false
+              visible.value = false
             }}
           >
             No

@@ -46,7 +46,7 @@ tags:
  * @param {PreactElement} parentDom The DOM element to update
  */
 export function hydrate(vnode, parentDom) {
-	render(vnode, parentDom, hydrate);
+  render(vnode, parentDom, hydrate);
 }
 ```
 

@@ -134,12 +134,14 @@ async function scanRoutes(dirPath: string, projectPath: string = '~/pages'): Pro
 }
 
 export default function fsRouter(): Plugin {
+  const pagesPath = resolve(process.cwd(), 'src', 'pages')
+  let routesPromise = scanRoutes(pagesPath)
   return {
     name: 'vite:preact-fs-router-plugin',
     enforce: 'pre',
     async resolveId(source) {
       if (source === '#router') {
-        const routes = await scanRoutes(resolve(process.cwd(), 'src', 'pages'))
+        const routes = await routesPromise
         try {
           await access(cacheDir)
         } catch {
@@ -151,5 +153,13 @@ export default function fsRouter(): Plugin {
         return fsRouterFile
       }
     },
+
+    configureServer(server) {
+      server.watcher.on('all', (_, path) => {
+        if (path.includes(pagesPath))
+          routesPromise = scanRoutes(pagesPath)
+      })
+    },
+
   }
 }

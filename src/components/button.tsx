@@ -11,12 +11,12 @@ export default function Button(
   return (
     <button
       class={cx(
-			  {
-			    'bg-blue-500 text-white': !!props.primary,
-			    'bg-white text-stone-800': !props.primary,
-			  },
-			  'px-3 py-1 rounded-md',
-			  props.class,
+        {
+          'bg-blue-500 text-white': !!props.primary,
+          'bg-white text-stone-800': !props.primary,
+        },
+        'px-3 py-1 rounded-md',
+        props.class,
       )}
       onClick={props.onClick}
     >

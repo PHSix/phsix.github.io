@@ -30,7 +30,9 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
+    "@biomejs/biome": "^1.5.3",
     "@preact/preset-vite": "^2.7.0",
+    "@types/dom-view-transitions": "^1.0.4",
     "@types/node": "^20.11.17",
     "@types/prismjs": "^1.26.3",
     "@types/three": "^0.161.2",

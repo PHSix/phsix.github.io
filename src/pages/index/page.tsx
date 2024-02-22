@@ -22,15 +22,15 @@ export default function Index() {
     <DefaultLayout
       title="PH's Site"
       links={[
-			  {
-			    url: '/blog',
-			    text: '/Blog',
-			  },
-			  {
-			    url: 'https://github.com/PHSix',
-			    text: '/Github',
-			    blank: true,
-			  },
+        {
+          url: '/blog',
+          text: '/Blog',
+        },
+        {
+          url: 'https://github.com/PHSix',
+          text: '/Github',
+          blank: true,
+        },
       ]}
     >
       <main>
@@ -101,10 +101,10 @@ export default function Index() {
                 <div class="flex flex-row items-center w-full gap-2">
                   <ReactIcon class="h-[1.5em]" />
                   R3F
-                <PlusIcon class="h-[1.5em]" />
+                  <PlusIcon class="h-[1.5em]" />
                   <ThreejsIcon class="h-[1.5em]" />
                   Three.js
-              </div>
+                </div>
               </div>
             </div>
 
@@ -139,7 +139,7 @@ export default function Index() {
                 <div class="flex flex-row items-center w-full gap-2">
                   <NodeJsIcon class="h-[1.5em]" />
                   Node.js
-              </div>
+                </div>
               </div>
             </div>
 

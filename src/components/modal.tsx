@@ -30,11 +30,11 @@ export function Modal(
         <div class="fixed top-[40%] left-[50%]">
           <div
             class={cx(
-						  'translate-x-[-50%] translate-y-[-50%] bg-stone-100 dark:bg-stone-800 shadow-xl p-4 rounded-md  text-sm duration-300 scale-0 transform',
-						  {
-						    'scale-100': props.visible.value && delayVisible,
-						  },
-						  props.className,
+              'translate-x-[-50%] translate-y-[-50%] bg-stone-100 dark:bg-stone-800 shadow-xl p-4 rounded-md  text-sm duration-300 scale-0 transform',
+              {
+                'scale-100': props.visible.value && delayVisible,
+              },
+              props.className,
             )}
           >
             {props.children}

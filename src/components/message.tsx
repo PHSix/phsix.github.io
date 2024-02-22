@@ -3,9 +3,7 @@ import { render } from 'preact'
 
 const isServer = typeof window === 'undefined'
 
-const msgs = signal<
-	{ content: string, uuid: string, status: 'success' | 'error' }[]
->([])
+const msgs = signal<{ content: string, uuid: string, status: 'success' | 'error' }[]>([])
 
 class Message {
   constructor() {

@@ -113,7 +113,7 @@ export default function AnimateRotation() {
   useSignalEffect(() => {
     if (dark.value)
       material.color = darkFg
-		 else
+    else
       material.color = fg
   })
 
