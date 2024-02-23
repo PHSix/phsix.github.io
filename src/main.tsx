@@ -17,7 +17,6 @@ function ssrLog(props: unknown) {
     && typeof window === 'undefined'
   ) {
     const _props = props as AppProps
-    console.log(`prerender, url: ${_props.url}, ssr state: ${_props.ssr}`)
   }
 }
 

@@ -1,13 +1,11 @@
 import { resolve } from 'node:path'
-import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import process from 'node:process'
 import type { Plugin } from 'vite'
 import yaml from 'yaml'
-import type { BlogAttributes } from '#blogs'
+import type { BlogAttributes } from 'virtual:blogs'
 
 const blogsFolder = resolve(process.cwd(), 'blogs')
-const cacheDir = resolve(process.cwd(), 'node_modules/.markdown-cache/')
-const blogListFile = resolve(cacheDir, 'blog-list.json')
 const blogReqUrlReg = /\/blogs\/.+\.json/g
 
 async function getAttributesAndContent(str: string) {
@@ -60,6 +58,8 @@ export default function markdown(): Plugin {
   let blogs = getBlogs()
   let blogList = blogs.then(res => res.blogList)
   let contents = blogs.then(res => res.contents)
+  const virtualModuleId = 'virtual:blogs'
+  const resolvedVirtualModuleId = `\0${virtualModuleId}`
 
   function update() {
     blogs = getBlogs()
@@ -73,9 +73,7 @@ export default function markdown(): Plugin {
     async buildStart() {
       return blogs.then(async (res) => {
         const folder = resolve(process.cwd(), 'public', 'blogs')
-        try {
-          await mkdir(folder)
-        } catch {}
+        await mkdir(folder).catch(() => void 0)
 
         await Promise.all(
           Object.entries(res.contents).map(([id, content]) =>
@@ -91,20 +89,12 @@ export default function markdown(): Plugin {
       })
     },
     async resolveId(source) {
-      if (source === '#blogs') {
-        try {
-          await access(cacheDir)
-        } catch {
-          await mkdir(cacheDir, { recursive: true })
-        }
-
-        try {
-          await access(blogListFile)
-        } catch {
-          await writeFile(blogListFile, JSON.stringify(await blogList))
-        }
-        return blogListFile
-      }
+      if (source === virtualModuleId)
+        return resolvedVirtualModuleId
+    },
+    async load(source) {
+      if (source === resolvedVirtualModuleId)
+        return `export default ${JSON.stringify(await blogList)}`
     },
     configureServer(server) {
       server.watcher.add(blogsFolder)

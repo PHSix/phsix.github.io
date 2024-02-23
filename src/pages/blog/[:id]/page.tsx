@@ -4,14 +4,14 @@ import { Suspense } from 'preact/compat'
 import { useMemo } from 'preact/hooks'
 import dayjs from 'dayjs'
 import Markdown from 'markdown-to-jsx'
+import blogs from 'virtual:blogs'
 import InternalImg from './img'
 import CodePre from './code-pre'
-import blogs from '#blogs'
 import DefaultLayout from '~/layouts/default-layout'
 import fetchWrap from '~/utils/fetchWrap'
 import useDark from '~/hooks/useDark'
-import useTitle from '~/hooks/useTitle'
 import './style.scss'
+import useHead from '~/hooks/useHead'
 
 const fetchers: Record<string, () => { id: string, content: string }> = {}
 
@@ -44,8 +44,9 @@ function BlogPageImpl() {
 
   const data = useMemo(() => fetchers[id]?.(), [])
   const blog = useMemo(() => blogs.find(b => b.id === id), [])
-  useTitle(blog.attributes.title)
-  // JSX.IntrinsicElements
+  useHead({
+    title: blog.attributes.title,
+  })
 
   const markdown = useMemo(
     () => (

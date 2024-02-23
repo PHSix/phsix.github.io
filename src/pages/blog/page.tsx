@@ -1,8 +1,8 @@
 import { useMemo } from 'preact/hooks'
 import dayjs from 'dayjs'
+import blogs from 'virtual:blogs'
+import type { Blog as BlogType } from 'virtual:blogs'
 import DefaultLayout from '~/layouts/default-layout'
-import type { Blog as BlogType } from '#blogs'
-import blogs from '#blogs'
 import useDark from '~/hooks/useDark'
 import useHead from '~/hooks/useHead'
 

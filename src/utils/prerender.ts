@@ -2,7 +2,7 @@ import type { VNode } from 'preact'
 import { options } from 'preact'
 import renderToString from 'preact-render-to-string'
 import prepass from 'preact-ssr-prepass'
-import { getHead } from '../hooks/useHead'
+import localOptions from '~/options'
 
 const maxTries = 10
 
@@ -39,5 +39,5 @@ export default async function prerender(vnode: VNode<any>) {
   let html = await render()
   options.vnode = oldVnodeHook
   html += `<script type="isodata"></script>`
-  return { html, links, head: getHead() }
+  return { html, links, head: localOptions.head }
 }

@@ -1,4 +1,4 @@
-declare module '#blogs' {
+declare module 'virtual:blogs' {
   export interface Blog {
     id: string
     attributes: BlogAttributes

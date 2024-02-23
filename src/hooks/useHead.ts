@@ -1,30 +1,23 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
+import localOptions from '~/options'
 
 interface Head {
   title: string
   lang: string
 }
 
-const heads: Head[] = [
-  {
-    title: 'Site',
-    lang: 'en',
-  },
-]
+const defaultHead = {
+  title: 'Site',
+  lang: 'en',
+}
 
 export default function useHead(head: Partial<Head>) {
   useState(() => {
-    const lastHead = getHead()
-    heads.push(Object.assign({ ...lastHead }, head))
-  })
+    localOptions.head = { ...defaultHead, ...head }
 
-  useEffect(() => {
-    return () => {
-      heads.pop()
+    if (typeof window !== 'undefined') {
+      document.title = localOptions.head.title
+      document.head.lang = localOptions.head.lang
     }
-  }, [])
-}
-
-export function getHead() {
-  return heads[heads.length - 1]
+  })
 }
