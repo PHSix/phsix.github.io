@@ -9,7 +9,7 @@ import {
 import { useSignal } from '@preact/signals'
 import debounce from 'debounce'
 import PopupLinks from './popup-links'
-import ThemeSwitch from '~/components/theme-switch'
+import DarkModeSwitcher from '~/components/dark-mode-switcher'
 import type { LinkProps } from '~/components/Link'
 import Link from '~/components/Link'
 
@@ -72,7 +72,7 @@ export default function DefaultLayout(
             : (
                 props.links?.map(link => <Link {...link} key={link.text} />)
               )}
-          <ThemeSwitch />
+          <DarkModeSwitcher />
         </div>
       </header>
 

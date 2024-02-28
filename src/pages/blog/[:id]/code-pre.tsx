@@ -3,6 +3,7 @@ import { highlight, languages } from 'prismjs'
 import LangIcon from './LangIcon'
 import cx from '~/utils/cx'
 import useDark from '~/hooks/useDark'
+import { ClipboardIcon } from '~/components/icon'
 import message from '~/components/message'
 import 'prismjs/themes/prism.min.css'
 
@@ -21,12 +22,22 @@ export default function CodePre(
       : 'text'
 
     const code: string = props.children.props.children || ''
-    let content = code
-    if (lang in languages)
-      content = highlight(code, languages[lang], lang)
+    const content = lang in languages ? highlight(code, languages[lang], lang) : code
 
     return (
-      <div class="relative pre">
+      <div class="bg-stone-100 dark:bg-stone-800 rounded-md overflow-hidden">
+        <div class="flex flex-row justify-between items-center px-4 py-1 bg-stone-200 dark:bg-stone-700">
+          <LangIcon lang={lang} />
+          <div
+            class="bg-stone-200 hover:bg-stone-300 dark:bg-stone-700 hover:dark:bg-stone-800 cursor-pointer rounded-md px-2 py-1"
+            onClick={() => {
+              navigator.clipboard.writeText(code)
+              message.success('复制成功')
+            }}
+          >
+            <ClipboardIcon class="h-[1.3em]" />
+          </div>
+        </div>
         <pre
           className={cx(props.children.props.className, {
             darkModePre: dark.value,
@@ -38,21 +49,6 @@ export default function CodePre(
           >
           </code>
         </pre>
-
-        <div className="absolute top-2 right-2 z-10 code-anchor duration-300 opacity-100 md:opacity-0 text-stone-500 select-none flex gap-2 items-center">
-          <LangIcon lang={lang as any} size={16} />
-          <span>{lang}</span>
-          <span>|</span>
-          <span
-            class="cursor-pointer hover:text-orange-500"
-            onClick={() => {
-              navigator.clipboard.writeText(code)
-              message.success('复制成功')
-            }}
-          >
-            复制
-          </span>
-        </div>
       </div>
     )
   }

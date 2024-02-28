@@ -68,7 +68,7 @@
   pre[class*="language-"],
   pre[class*="lang-"],
   pre {
-    @apply w-full bg-stone-200 dark:bg-neutral-700 p-2 block overflow-scroll max-h-96 rounded-md min-h-4;
+    @apply w-full bg-stone-100 dark:bg-stone-800 p-2 block overflow-scroll max-h-96 rounded-md min-h-4;
     scrollbar-color: rgb(68 64 60) rgba(0, 0, 0, 0);
 
     code[class*="language-"],
@@ -96,12 +96,6 @@
 
   img {
     @apply block text-center;
-  }
-
-  .pre:hover {
-    .code-anchor {
-      @apply opacity-100;
-    }
   }
 
   .darkModePre {

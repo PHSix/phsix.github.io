@@ -6,6 +6,7 @@ import threejsSvg from './assert/threejs.svg'
 import typescriptSvg from './assert/typescript.svg'
 import nixosSvg from './assert/nixos.svg'
 import plusSvg from './assert/plus.svg'
+import clipboardSvg from './assert/clipboard.svg'
 
 export function NeovimIcon(props: JSX.IntrinsicElements['img']) {
   return <img src={neovimSvg} {...props} />
@@ -52,4 +53,8 @@ export function NixosIcon(props: JSX.IntrinsicElements['img']) {
 
 export function PlusIcon(props: JSX.IntrinsicElements['img']) {
   return <img src={plusSvg} {...props} />
+}
+
+export function ClipboardIcon(props: JSX.IntrinsicElements['img']) {
+  return <img src={clipboardSvg} {...props} />
 }
