@@ -2,7 +2,8 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 import markdown from './src/plugins/markdown'
-import fsRouter from './src/plugins/fs-router'
+
+// import fsRouter from './src/plugins/fs-router'
 
 // import { visualizer } from "rollup-plugin-visualizer";
 
@@ -10,7 +11,7 @@ import fsRouter from './src/plugins/fs-router'
 export default defineConfig({
   plugins: [
     markdown(),
-    fsRouter(),
+    // fsRouter(),
     preact({
       prerender: {
         enabled: true,

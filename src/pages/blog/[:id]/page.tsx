@@ -100,6 +100,8 @@ function BlogPageImpl() {
         </div>
       </div>
       {markdown}
+
+      <div class="w-full text-end text-stone-700/70 dark:text-stone-300/70 italic">End.</div>
     </DefaultLayout>
   )
 }

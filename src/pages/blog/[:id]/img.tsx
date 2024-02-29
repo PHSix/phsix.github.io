@@ -6,7 +6,7 @@ export default function InternalImg(props: {
   src?: string
   title?: string
 }) {
-  if (props.src?.startsWith('/images'))
+  if (props.src?.startsWith('/public'))
     props.src = props.src.slice(7)
 
   return <img {...props} class={cx(props.className, 'min-h-10')}></img>

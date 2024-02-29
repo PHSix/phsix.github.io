@@ -1,6 +1,6 @@
 import { hydrate } from 'preact-iso'
-import FsRouter from '#router'
 import './index.css'
+import SiteRouter from './router'
 
 interface AppProps {
   ssr: boolean
@@ -22,8 +22,7 @@ function ssrLog(props: unknown) {
 
 function App(props: Partial<AppProps>) {
   ssrLog(props)
-
-  return <FsRouter />
+  return <SiteRouter />
 }
 
 if (typeof window !== 'undefined')

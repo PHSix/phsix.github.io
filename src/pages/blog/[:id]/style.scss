@@ -5,7 +5,7 @@
 }
 
 .blog-page-content {
-  @apply p-4 md:p-0;
+  @apply p-4 md:p-0 text-wrap whitespace-pre-wrap;
   font-size: 1em;
   & > h1 {
     @apply my-8;
@@ -103,21 +103,25 @@
   }
 
   blockquote {
-    @apply block text-neutral-500 bg-slate-50/70 p-0 flex;
+    @apply block text-neutral-500 bg-slate-50/70 dark:bg-stone-800/70 p-0 flex shadow-sm;
     &::before {
       content: "";
-      width: 1em;
+      width: 0.3em;
       min-height: fit-content;
-      @apply bg-slate-400;
+      @apply bg-slate-400 dark:bg-slate-600;
     }
 
     & > p {
-      @apply inline-block p-2 pl-4;
+      @apply inline-block p-4;
     }
   }
 
   strong {
-    @apply font-bold;
+    @apply font-bold text-stone-700 dark:text-stone-300 mx-1;
+  }
+
+  em {
+    @apply italic text-stone-700 dark:text-stone-300 mx-1;
   }
 
   .darkModePre {
