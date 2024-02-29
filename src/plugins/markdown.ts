@@ -1,12 +1,12 @@
 import { resolve } from 'node:path'
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
+import { cp, mkdir, readFile, readdir, rmdir, writeFile } from 'node:fs/promises'
 import process from 'node:process'
 import type { Plugin } from 'vite'
 import yaml from 'yaml'
 import type { BlogAttributes } from 'virtual:blogs'
 
 const blogsFolder = resolve(process.cwd(), 'blogs')
-const blogReqUrlReg = /\/blogs\/.+\.json/g
+const blogJsonUrlReg = /\/blogs\/.+\.json/g
 
 async function getAttributesAndContent(str: string) {
   const index = str.indexOf('\n---', 2)
@@ -72,13 +72,13 @@ export default function markdown(): Plugin {
     enforce: 'pre',
     async buildStart() {
       return blogs.then(async (res) => {
-        const folder = resolve(process.cwd(), 'public', 'blogs')
-        await mkdir(folder).catch(() => void 0)
+        const blogJsonFolder = resolve(process.cwd(), 'public', 'blogs')
+        await mkdir(blogJsonFolder).catch(() => void 0)
 
         await Promise.all(
           Object.entries(res.contents).map(([id, content]) =>
             writeFile(
-              resolve(folder, `${id}.json`),
+              resolve(blogJsonFolder, `${id}.json`),
               JSON.stringify({
                 id,
                 content,
@@ -105,7 +105,7 @@ export default function markdown(): Plugin {
       })
 
       server.middlewares.use(async (req, res, next) => {
-        if (req.url.match(blogReqUrlReg)) {
+        if (req.url.match(blogJsonUrlReg)) {
           res.setHeader('Content-type', 'application/json')
           const id = req.url.slice(7, req.url.length - 5)
           const contentsThen = await contents

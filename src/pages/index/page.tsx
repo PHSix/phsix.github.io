@@ -49,11 +49,14 @@ export default function Index() {
           <div class="split-line min-h-full h-full w-[1px] bg-gray-600/10" />
 
           <section class="text-left p-4 md:p-0 space-y-2">
-            <div>Hello, I'm Yi Chen, welcome to access my github site.</div>
+            <div>Hello, I'm Yi Chen. Welcome to my github site.</div>
 
-            <div>I am a front-end developer based in WuHan China.</div>
+            <div>I am a front-end developer based in WuHan, China.</div>
 
-            <div>I live in linux, programing and gaming.</div>
+            <div>I am passionate about Linux, programming, and gaming.</div>
+
+            <div>I am currently looking for a new job opportunity.</div>
+
           </section>
         </div>
 

@@ -8,35 +8,38 @@
   @apply p-4 md:p-0;
   font-size: 1em;
   & > h1 {
+    @apply my-8;
     font-size: 1.5em;
 
     &::after {
       content: "";
       height: 1px;
-      @apply w-full block bg-stone-300;
+      @apply w-full block bg-stone-100 shadow-md;
     }
   }
   & > h2 {
+    @apply my-8;
     font-size: 1.3em;
     &::after {
       content: "";
       height: 1px;
-      @apply w-full block bg-stone-300/90;
+      @apply w-full block bg-stone-100/90;
     }
   }
 
   & > h3 {
+    @apply my-4;
     font-size: 1.2em;
 
     &::after {
       content: "";
       height: 1px;
-      @apply w-full block bg-stone-300/70;
+      @apply w-full block bg-stone-100/70;
     }
   }
 
   & > p {
-    text-indent: 2rem;
+    text-indent: 2em;
   }
 
   & > ol {
@@ -54,7 +57,8 @@
   }
 
   li {
-    text-indent: 2rem;
+    @apply mb-2;
+    text-indent: 2em;
     &::marker {
       position: relative;
     }
@@ -96,6 +100,24 @@
 
   img {
     @apply block text-center;
+  }
+
+  blockquote {
+    @apply block text-neutral-500 bg-slate-50/70 p-0 flex;
+    &::before {
+      content: "";
+      width: 1em;
+      min-height: fit-content;
+      @apply bg-slate-400;
+    }
+
+    & > p {
+      @apply inline-block p-2 pl-4;
+    }
+  }
+
+  strong {
+    @apply font-bold;
   }
 
   .darkModePre {
