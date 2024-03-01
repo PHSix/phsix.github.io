@@ -44,12 +44,16 @@
 
   & > ol {
     list-style-type: decimal;
-    list-style-position: inside;
+    list-style-position: outside;
+    box-sizing: border-box;
+    padding-left: 2em;
   }
 
   & > ul {
     list-style-type: square;
-    list-style-position: inside;
+    list-style-position: outside;
+    box-sizing: border-box;
+    padding-left: 2em;
   }
 
   & > p {
@@ -58,7 +62,6 @@
 
   li {
     @apply mb-2;
-    text-indent: 2em;
     &::marker {
       position: relative;
     }
