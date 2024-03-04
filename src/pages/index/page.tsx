@@ -1,5 +1,6 @@
 import Card from './card'
 import Tooltip from './tooltip'
+import AnimateRotation from './animate-rotation'
 import ClientComponent from '~/components/client-component'
 import {
   GithubIcon,
@@ -10,7 +11,7 @@ import {
   ReactIcon,
   ThreejsIcon,
   TypescriptIcon,
-} from '~/components/icon'
+} from '~/components/icon/icon'
 import DefaultLayout from '~/layouts/default-layout'
 import useHead from '~/hooks/useHead'
 
@@ -39,10 +40,7 @@ export default function Index() {
         >
           <section class="text-center">
             <div class="w-[24em] h-[24em]">
-              <ClientComponent
-                component={() => import('./animate-rotation')}
-                componentProps={{}}
-              />
+              <AnimateRotation />
             </div>
           </section>
 

@@ -28,7 +28,6 @@ export default function SiteRouter() {
         <Route path="/blog/:id/" component={BlogIdPage} />
         <Route path="/404" component={NotFoundPage} />
         <Route path="/500" component={ErrorPage} />
-        <Route default component={NotFoundPage} />
       </Router>
     </LocationProvider>
   )

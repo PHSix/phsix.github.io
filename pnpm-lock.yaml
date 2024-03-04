@@ -17,6 +17,9 @@ dependencies:
   debounce:
     specifier: ^2.0.0
     version: 2.0.0
+  farm:
+    specifier: ^2.0.5
+    version: 2.0.5
   markd:
     specifier: ^1.2.0
     version: 1.2.0
@@ -2617,6 +2620,10 @@ packages:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /farm@2.0.5:
+    resolution: {integrity: sha512-RRtR3QiB3PaXZ7LURU3tIsCYa4KYWcQDkiO23rs56mcOgflaYqr9/zz9EdtSeWdytMrjIIBwkqF1b/JUge5z3A==}
     dev: false
 
   /fast-deep-equal@3.1.3:

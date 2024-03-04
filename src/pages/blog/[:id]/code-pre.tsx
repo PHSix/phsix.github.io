@@ -3,9 +3,10 @@ import { highlight, languages } from 'prismjs'
 import LangIcon from './LangIcon'
 import cx from '~/utils/cx'
 import useDark from '~/hooks/useDark'
-import { ClipboardIcon } from '~/components/icon'
+import { ClipboardIcon } from '~/components/icon/icon'
 import message from '~/components/message'
 import 'prismjs/themes/prism.min.css'
+import { __CLIENT__ } from '~/constant'
 
 export default function CodePre(
   props: PropsWithChildren<{ className?: string }>,
