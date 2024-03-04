@@ -38,10 +38,6 @@
     }
   }
 
-  & > p {
-    text-indent: 2em;
-  }
-
   & > ol {
     list-style-type: decimal;
     list-style-position: outside;
@@ -69,7 +65,6 @@
 
   code {
     @apply px-1 inline-block bg-red-50 rounded text-left box-border mx-[4px] dark:bg-stone-700/80 dark:text-stone-200;
-    text-indent: 0;
   }
 
   pre[class*="language-"],
