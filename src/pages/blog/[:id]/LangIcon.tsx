@@ -9,9 +9,11 @@ const GithubLangToIcon = lazy(() =>
 export default function LangIcon(props: { lang: string, size?: number }) {
   return (
     <div class="flex items-center gap-2">
-      <Suspense fallback={null}>
-        <GithubLangToIcon lang={props.lang as any} size={props.size ?? 16} />
-      </Suspense>
+      {__CLIENT__ && (
+        <Suspense fallback={null}>
+          <GithubLangToIcon lang={props.lang as any} size={props.size ?? 16} />
+        </Suspense>
+      )}
       <span>{props.lang}</span>
     </div>
   )
