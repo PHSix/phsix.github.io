@@ -11,6 +11,7 @@ export default function fetchWrap<R = Response>(
   url: string,
   opts?: {
     init?: RequestInit
+    immediate?: boolean
     callback?: (r: Response) => R
   },
 ): () => Awaited<R> {
@@ -18,20 +19,26 @@ export default function fetchWrap<R = Response>(
   let response: any
   let promise: Promise<void>
 
-  return () => {
-    if (!response && !promise) {
-      status = FetchStatus.pending
+  function startRequest() {
+    status = FetchStatus.pending
 
-      promise = fetch(url, opts.init)
-        .then(async (res) => {
-          status = FetchStatus.success
-          response = opts?.callback ? await opts.callback(res) : res
-        })
-        .catch((err) => {
-          status = FetchStatus.error
-          response = err
-        })
-    }
+    promise = fetch(url, opts.init)
+      .then(async (res) => {
+        status = FetchStatus.success
+        response = opts?.callback ? await opts.callback(res) : res
+      })
+      .catch((err) => {
+        status = FetchStatus.error
+        response = err
+      })
+  }
+
+  if (opts.immediate)
+    startRequest()
+
+  return () => {
+    if (!response && !promise)
+      startRequest()
 
     switch (status) {
       case FetchStatus.pending:

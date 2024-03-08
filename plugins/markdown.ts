@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import { cp, mkdir, readFile, readdir, rmdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import process from 'node:process'
 import type { Plugin } from 'vite'
 import yaml from 'yaml'

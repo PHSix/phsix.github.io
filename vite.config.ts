@@ -1,8 +1,9 @@
 import { resolve } from 'node:path'
+import process from 'node:process'
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 import { visualizer } from 'rollup-plugin-visualizer'
-import markdown from './src/plugins/markdown'
+import markdown from './plugins/markdown'
 
 // import fsRouter from './src/plugins/fs-router'
 
@@ -15,6 +16,7 @@ export default defineConfig({
       prerender: {
         enabled: true,
         additionalPrerenderRoutes: ['/blog', '/not-found'],
+        prerenderScript: resolve(process.cwd(), 'src', 'prerender.js'),
       },
     }),
 
