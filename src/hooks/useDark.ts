@@ -1,5 +1,5 @@
-import type { Signal } from '@preact/signals'
-import { signal, useSignalEffect } from '@preact/signals'
+import type { Signal } from '@preact/signals-react'
+import { signal, useSignalEffect } from '@preact/signals-react'
 
 function getDark() {
   try {
