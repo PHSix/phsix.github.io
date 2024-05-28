@@ -38,7 +38,7 @@ export function NodeJsIcon(props: IconProps) {
   return <img alt="nodejs" src="/icons/nodejs.svg" {...props} />
 }
 
-export function NixosIcon(props: IconProps) {
+export function NixOSIcon(props: IconProps) {
   return <img alt="nixos" src="/icons/nixos.svg" {...props} />
 }
 

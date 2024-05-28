@@ -1,10 +1,10 @@
 'use client'
 import MarkdownToJSX from 'markdown-to-jsx'
 import type { PropsWithChildren } from 'react'
-import CodePre from './CodePre'
-import MarkdownImg from './MarkdownImg'
+import MarkdownImg from '../MarkdownImg'
+import CodePre from '../CodePre'
 
-export default function BlogMarkdown(props: { content: string }) {
+export default function MarkdownArticle(props: { content: string }) {
   return (
     <MarkdownToJSX options={{
       wrapper: (props: PropsWithChildren) => (

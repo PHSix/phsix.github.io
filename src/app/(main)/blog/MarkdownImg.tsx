@@ -1,4 +1,5 @@
 'use client'
+import { useRef } from 'react'
 import cx from '~/utils/cx'
 
 export default function MarkdownImg(props: {
@@ -8,6 +9,15 @@ export default function MarkdownImg(props: {
   title?: string
 }) {
   const src = props.src?.startsWith('/public') ? props.src.slice(7) : props.src
+  const ref = useRef<HTMLImageElement>(null)
 
-  return <img {...props} src={src} className={cx(props.className, 'min-h-10')}></img>
+  return (
+    <img
+      {...props}
+      src={src}
+      className={cx(props.className, 'min-h-10')}
+      ref={ref}
+    >
+    </img>
+  )
 }

@@ -1,7 +1,7 @@
 'use client'
 import type { PropsWithChildren } from 'react'
 import { highlight, languages } from 'prismjs'
-import LangIcon from './LangIcon'
+import LangIcon from '~/components/LangIcon'
 import cx from '~/utils/cx'
 import useDark from '~/hooks/useDark'
 import { ClipboardIcon } from '~/components/Icons'

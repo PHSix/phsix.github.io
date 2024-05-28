@@ -1,26 +1,34 @@
+import type { Metadata } from 'next'
+import MainHeader from './MainHeader'
 import Card from '~/components/Card'
-import { GithubIcon, NeovimIcon, NixosIcon, NodeJsIcon, PlusIcon, ReactIcon, ThreejsIcon, TypescriptIcon } from '~/components/Icons'
+import { GithubIcon, NeovimIcon, NixOSIcon, NodeJsIcon, PlusIcon, ReactIcon, ThreejsIcon, TypescriptIcon } from '~/components/Icons'
 import Tooltip from '~/components/Tooltip'
 import AnimateRotation from '~/components/AnimateRotation'
-import DefaultLayout from '~/components/DefaultLayout'
+
+export const metadata: Metadata = {
+  title: 'PH\'s Site',
+}
 
 export default function Home() {
   return (
-    <DefaultLayout
-      title="PH's Site"
-      links={[
-        {
-          url: '/blog',
-          text: '/Blog',
-        },
-        {
-          url: 'https://github.com/PHSix',
-          text: '/Github',
-          blank: true,
-        },
-      ]}
+    <>
+      <MainHeader
+        title="PH's Site"
+        links={[
+          {
+            url: '/blog',
+            text: '/Blog',
+          },
+          {
+            url: 'https://github.com/PHSix',
+            text: '/Github',
+            blank: true,
+          },
+        ]}
+      >
 
-    >
+      </MainHeader>
+
       <main>
         <div
           className="flex flex-col md:flex-row flex-nowrap gap-4 md:gap-8 items-center"
@@ -52,7 +60,7 @@ export default function Home() {
           <Card>
             <div className="flex flex-row items-center justify-between w-full">
               <div className="flex flex-row items-center gap-2">
-                <NixosIcon className="h-[1.5em]" />
+                <NixOSIcon className="h-[1.5em]" />
                 Nixos
               </div>
 
@@ -139,7 +147,6 @@ export default function Home() {
           </Card>
         </div>
       </main>
-
-    </DefaultLayout>
+    </>
   )
 }

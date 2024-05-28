@@ -1,23 +1,29 @@
 import { use } from 'react'
 import Link from 'next/link'
-import DefaultLayout from '~/components/DefaultLayout'
-import ImageBanner from '~/components/ImageBanner'
+import type { Metadata } from 'next'
+import MainHeader from '../MainHeader'
+import ImageBanner from './ImageBanner'
 import { getBlogList } from '~/utils/blogs'
+
+export const metadata: Metadata = {
+  title: 'PH\'s Blog',
+}
 
 export default function Blog() {
   const blogs = use(getBlogList())
 
   return (
-    <DefaultLayout
-      title="PH's Blog"
-      links={[
-        {
-          url: '/',
-          text: '/index',
-        },
-      ]}
-
-    >
+    <>
+      <MainHeader
+        title="PH's Blog"
+        links={[
+          {
+            url: '/',
+            text: '/index',
+          },
+        ]}
+      >
+      </MainHeader>
       <main>
         <ImageBanner />
         <div className="px-8 my-4">
@@ -38,6 +44,6 @@ export default function Blog() {
           </div>
         </div>
       </main>
-    </DefaultLayout>
+    </>
   )
 }
