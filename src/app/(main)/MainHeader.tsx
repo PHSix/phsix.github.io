@@ -1,4 +1,4 @@
-import LayoutLinks from '~/components/LayoutLinks'
+import LayoutLinks from './LayoutLinks'
 
 export default function MainHeader(props: {
   title?: string

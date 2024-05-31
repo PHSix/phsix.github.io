@@ -1,4 +1,3 @@
-import { use } from 'react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import MainHeader from '../MainHeader'
@@ -9,8 +8,8 @@ export const metadata: Metadata = {
   title: 'PH\'s Blog',
 }
 
-export default function Blog() {
-  const blogs = use(getBlogList())
+export default async function Blog() {
+  const blogs = await getBlogList()
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function Blog() {
       <main>
         <ImageBanner />
         <div className="px-8 my-4">
-          <div className="flex flex-col gap-3 pl-2">
+          <div className="flex flex-col gap-5 pl-2">
             {blogs.map(b => (
               <Link
                 key={b.id}

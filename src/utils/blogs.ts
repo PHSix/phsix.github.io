@@ -26,7 +26,7 @@ watch(resolve(process.cwd(), 'blogs'), { encoding: 'buffer' }, () => {
 })
 
 export async function getBlogList() {
-  return getBlogs().then(blogs => blogs.map(b => omit(b, ['content'])))
+  return getBlogs().then(blogs => blogs.map(b => omit(b, ['content'])).sort((a, b) => b.date.unix() - a.date.unix()))
 }
 
 export async function getBlog(id: string) {
