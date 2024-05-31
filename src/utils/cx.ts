@@ -2,20 +2,20 @@
  * a mini implemention of `classname`
  */
 function cx(...args: (string | Record<string, boolean> | undefined | null)[]) {
-  let result = ''
+  const temp: string[] = []
 
   for (const arg of args) {
     if (typeof arg === 'string') {
-      result += `${arg} `
+      temp.push(arg)
     } else if (arg !== null && arg !== undefined) {
       for (const key in arg) {
         if (arg[key])
-          result += `${key} `
+          temp.push(key)
       }
     }
   }
 
-  return result
+  return temp.join(' ')
 }
 
 export default cx

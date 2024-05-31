@@ -1,5 +1,5 @@
 'use client'
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren, useId } from 'react'
 import { highlight, languages } from 'prismjs'
 import LangIcon from '~/components/LangIcon'
 import cx from '~/utils/cx'
@@ -26,7 +26,7 @@ export default function CodePre(
     const code: string = props.children.props.children || ''
     const content = lang in languages ? highlight(code, languages[lang], lang) : code
 
-    const className = props.children.props.className ? `${props.children.props.className}`.replace('language-', 'lang-') : ''
+    const className = props.children.props.className ?? ''
 
     return (
       <div className="bg-stone-100 dark:bg-stone-800 rounded-md overflow-hidden">
@@ -46,6 +46,7 @@ export default function CodePre(
           className={cx(className, {
             darkModePre: dark.value,
           })}
+          tabIndex={0}
         >
           <code
             className={className}

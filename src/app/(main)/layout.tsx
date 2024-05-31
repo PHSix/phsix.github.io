@@ -13,10 +13,10 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <head>
-        <title>PH's Site</title>
+        <link rel="icon" href="/favicon.svg" />
       </head>
       <body className="w-screen h-screen flex justify-center">
-        <div className="w-full lg:w-[1024px] ">
+        <div className="w-full lg:w-[1024px] px-2 lg:px-0">
           {children}
         </div>
       </body>
