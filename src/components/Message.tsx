@@ -1,10 +1,12 @@
 'use client'
 import { signal } from '@preact/signals-react'
-import { render } from 'react-dom'
+import { useState } from 'react'
+import * as ReactDOM from 'react-dom'
 
 const isServer = typeof window === 'undefined'
 
 const msgs = signal<{ content: string, uuid: string, status: 'success' | 'error' }[]>([])
+let update = () => {}
 
 class Message {
   constructor() {
@@ -14,8 +16,9 @@ class Message {
     container.className = 'message-container'
 
     document.body.appendChild(container)
+    ReactDOM.createPortal(<MessageComponent />, container)
 
-    render(<MessageComponent />, container)
+    // render(<MessageComponent />, container)
   }
 
   success(content: string) {
@@ -33,9 +36,11 @@ class Message {
   private insert(content: string, status: 'success' | 'error') {
     const uuid = getUuid()
     msgs.value = [...msgs.value, { content, status, uuid }]
+    update()
 
     setTimeout(() => {
       msgs.value = msgs.value.filter(msg => msg.uuid !== uuid)
+      update()
     }, 3000)
   }
 }
@@ -51,6 +56,10 @@ function getUuid() {
 }
 
 function MessageComponent() {
+  const [_, setState] = useState([])
+  update = () => {
+    setState([])
+  }
   return (
     <>
       {msgs.value.map(msg => (

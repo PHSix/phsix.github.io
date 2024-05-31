@@ -20,7 +20,7 @@ export default function CodePre(
     && props.children.type === 'code'
   ) {
     const lang: string = props.children.props.className
-      ? `${props.children.props.className}`.replace('lang-', '')
+      ? `${props.children.props.className}`.replace('lang-', '').replace('language-', '')
       : 'text'
 
     const code: string = props.children.props.children || ''

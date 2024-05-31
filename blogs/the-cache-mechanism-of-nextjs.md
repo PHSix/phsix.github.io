@@ -97,11 +97,7 @@ export const unstable_cache = cache.unstable_cache
 export const revalidateTag = cache.revalidateTag
 ```
 
-最后是`Full Route cache`的特性，在nextjs引入RSC之后，nextjs项目从原来的page router项目结构迁移至app router的项目结构，
-其中最大的变化就是区分前后两种开发模式下的区别，并引入RSC，在app router开发模式下，nextjs会缓存当前请求的路由页面预渲染的RSC Payload和html页面，
-并在在每次处理客户端请求的时候去判断当前存在的缓存是否还在缓存的有效周期之内，若是有效，则直接使用缓存，若无效再重新生成RSC和html，
-这种模式带来的好处是现在的服务端可以称之为半“ssg”模式，也就是next项目在build的时候会自动预先渲染出一部分路由页面，
-只要缓存未过期，服务端就可以一直使用这些缓存而不进行新的`render-to-string`。
+最后是`Full Route cache`的特性，在nextjs引入RSC之后，nextjs项目从原来的page router项目结构迁移至app router的项目结构，其中最大的变化就是区分前后两种开发模式下的区别，并引入RSC，在app router开发模式下，nextjs会缓存当前请求的路由页面预渲染的RSC Payload和html页面，并在在每次处理客户端请求的时候去判断当前存在的缓存是否还在缓存的有效周期之内，若是有效，则直接使用缓存，若无效再重新生成RSC和html，这种模式带来的好处是现在的服务端可以称之为半“ssg”模式，也就是next项目在build的时候会自动预先渲染出一部分路由页面，只要缓存未过期，服务端就可以一直使用这些缓存而不进行新的`render-to-string`。
 
 对于`Full Route cache`特性，简单的控制方法有以下几种：
 ```typescript

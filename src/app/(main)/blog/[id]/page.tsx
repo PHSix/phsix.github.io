@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import { use } from 'react'
 import MainHeader from '../../MainHeader'
 import ImageBanner from '../ImageBanner'
-import MarkdownArticle from './MarkdownArticle'
+import Mdx from './Mdx'
 import { getBlog, getBlogList } from '~/utils/blogs'
 import './style.scss'
 
@@ -10,8 +9,8 @@ interface Props {
   params: { id: string }
 }
 
-export default function BlogIdPage(props: Props) {
-  const blog = use(getBlog(props.params.id))
+export default async function BlogIdPage(props: Props) {
+  const blog = await getBlog(props.params.id)
 
   return (
     <>
@@ -37,9 +36,13 @@ export default function BlogIdPage(props: Props) {
           {blog.date.format('YYYY年MM月DD日')}
         </div>
       </ImageBanner>
-      <MarkdownArticle content={blog.content} />
+      <article className="blog-page-content">
+        <Mdx
+          source={blog.content}
+        />
+      </article>
 
-      <div className="w-full text-end text-stone-700/70 dark:text-stone-300/70 italic">End.</div>
+      <div className="w-full text-end text-stone-700/70 dark:text-stone-300/70 italic pt-32 pb-16">End.</div>
     </>
   )
 }
