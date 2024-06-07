@@ -15,8 +15,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" />
       </head>
-      <body className="w-screen h-screen flex justify-center">
-        <div className="w-full lg:w-[1024px] px-2 lg:px-0">
+      <body className="w-screen h-screen flex justify-center dark:bg-stone-900 dark:text-stone-100">
+        <div className="w-full lg:w-[1024px] px-2 lg:px-">
           {children}
         </div>
       </body>

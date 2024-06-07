@@ -13,7 +13,7 @@ class Message {
     if (isServer)
       return
     const container = document.createElement('div')
-    container.className = 'message-container'
+    container.className = 'fixed left-[1rem] bottom-[1rem] gap-[1rem] flex flex-col-reverse z-10'
 
     document.body.appendChild(container)
     ReactDOM.createPortal(<MessageComponent />, container)
