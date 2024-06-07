@@ -71,7 +71,7 @@
   pre[class*="language-"],
   pre[class*="lang-"],
   pre {
-    @apply w-full bg-stone-100 dark:bg-stone-800 p-2 block overflow-scroll max-h-96 rounded-md min-h-4;
+    @apply w-full bg-stone-100 dark:bg-stone-800 p-2 block overflow-auto max-h-96 rounded-md min-h-4;
     scrollbar-color: rgb(68 64 60) rgba(0, 0, 0, 0);
 
     code[class*="language-"],
@@ -121,10 +121,6 @@
 
   em {
     @apply italic text-stone-700 dark:text-stone-300 mx-1;
-  }
-
-  .darkModePre {
-    scrollbar-color: rgb(231 229 228) rgba(0, 0, 0, 0) !important;
   }
 }
 

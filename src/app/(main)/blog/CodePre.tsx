@@ -1,18 +1,9 @@
 'use client'
-import { type PropsWithChildren, useId } from 'react'
-import { highlight, languages } from 'prismjs'
-import LangIcon from '~/components/LangIcon'
-import cx from '~/utils/cx'
-import useDark from '~/hooks/useDark'
-import { ClipboardIcon } from '~/components/Icons'
-import message from '~/components/Message'
-import 'prismjs/themes/prism.min.css'
+import { type PropsWithChildren, Suspense, use, useEffect, useState } from 'react'
 
 export default function CodePre(
   props: PropsWithChildren<{ className?: string }>,
 ) {
-  const dark = useDark()
-
   if (
     !!props.children
     && typeof props.children === 'object'
@@ -24,39 +15,19 @@ export default function CodePre(
       : 'text'
 
     const code: string = props.children.props.children || ''
-    const content = lang in languages ? highlight(code, languages[lang], lang) : code
-
-    const className = props.children.props.className ?? ''
-
-    return (
-      <div className="bg-stone-100 dark:bg-stone-800 rounded-md overflow-hidden">
-        <div className="flex flex-row justify-between items-center px-4 py-1 bg-stone-200 dark:bg-stone-700">
-          <LangIcon lang={lang} />
-          <div
-            className="bg-stone-200 hover:bg-stone-300 dark:bg-stone-700 hover:dark:bg-stone-800 cursor-pointer rounded-md px-2 py-1"
-            onClick={() => {
-              navigator.clipboard.writeText(code)
-              message.success('复制成功')
-            }}
-          >
-            <ClipboardIcon className="h-[1.3em]" />
-          </div>
-        </div>
-        <pre
-          className={cx(className, {
-            darkModePre: dark.value,
-          })}
-          tabIndex={0}
-        >
-          <code
-            className={className}
-            dangerouslySetInnerHTML={{ __html: content }}
-          >
-          </code>
-        </pre>
-      </div>
-    )
+    return <Suspense fallback={null}><Internal lang={lang} code={code}></Internal></Suspense>
   }
 
   return <pre {...props}></pre>
+}
+
+function Internal(props: { lang: string, code: string }) {
+  return (
+    <code>
+      <pre
+        dangerouslySetInnerHTML={{ __html: props.code }}
+      >
+      </pre>
+    </code>
+  )
 }

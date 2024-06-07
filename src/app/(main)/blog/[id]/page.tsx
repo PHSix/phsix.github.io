@@ -15,6 +15,7 @@ export default async function BlogIdPage(props: Props) {
   return (
     <>
       <MainHeader
+        titleUrl="/blog"
         title="PH's Blog"
         links={[
           {
@@ -56,7 +57,6 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const blog = await getBlogList().then(blogs =>
     blogs.find(item => item.id === props.params.id)!,
-
   )
 
   return {

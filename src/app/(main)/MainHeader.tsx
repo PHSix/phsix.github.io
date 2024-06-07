@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import type { PropsWithChildren } from 'react'
+import { Fragment, createElement, useMemo } from 'react'
 import LayoutLinks from './LayoutLinks'
 
 export default function MainHeader(props: {
@@ -7,16 +10,22 @@ export default function MainHeader(props: {
     blank?: boolean
     text: string
   }[]
-  onTitleClick?: VoidFunction
+  titleUrl?: string
 }) {
+  const Wrap = ({ children }: PropsWithChildren) => props.titleUrl
+    ? createElement(Link, { href: props.titleUrl }, children)
+    : createElement(Fragment, {}, children)
+
   return (
     <header className="flex justify-between items-center px-3 py-5">
-      <div
-        className="text-[2em] cursor-pointer select-none"
-        onClick={props.onTitleClick}
-      >
-        {props.title}
-      </div>
+
+      <Wrap>
+        <div
+          className="text-[2em] cursor-pointer select-none"
+        >
+          {props.title}
+        </div>
+      </Wrap>
       <div className="flex flex-row gap-4 items-center">
         <LayoutLinks links={props.links || []} />
       </div>

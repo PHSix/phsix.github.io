@@ -8,7 +8,7 @@ interface Renderer {
 
 export default function AnimateRotation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const dark = useDark()
+  const [dark, setDark] = useDark()
 
   useEffect(() => {
     let renderTimer: NodeJS.Timeout
@@ -45,7 +45,7 @@ export default function AnimateRotation() {
       const darkFg = new Color('#d1d5db')
       const fg = new Color('#44403c')
       const material = new MeshBasicMaterial({
-        color: dark.value ? darkFg : fg,
+        color: dark ? darkFg : fg,
         wireframe: true,
       })
 
