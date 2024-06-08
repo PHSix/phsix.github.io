@@ -1,10 +1,8 @@
 'use client'
 import type { MouseEvent } from 'react'
-import useClient from '~/hooks/useClient'
 import useDark from '~/hooks/useDark'
 
 export default function DarkModeSwitcher() {
-  const isClient = useClient()
   const [dark, setDark] = useDark()
 
   function darkModeToggle(event: MouseEvent) {
@@ -48,12 +46,15 @@ export default function DarkModeSwitcher() {
       })
   }
 
-  const src = isClient ? dark ? '/icons/sun.svg' : '/icons/moon.svg' : ''
   return (
-    <img
+    <div
       suppressHydrationWarning
-      width={18}
-      src={src}
+      className="cursor-pointer dark:bg-[url(/icons/sun.svg)] bg-[url(/icons/moon.svg)]"
+      style={{
+        height: '24px',
+        width: '24px',
+        backgroundSize: '24px',
+      }}
       onClick={darkModeToggle}
     />
   )

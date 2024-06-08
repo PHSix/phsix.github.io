@@ -1,4 +1,4 @@
-import './globals.css'
+import './global.css'
 
 export const metadata = {
   title: '',
@@ -17,7 +17,7 @@ export default function RootLayout({
         <script src="/dark.js"></script>
       </head>
       <body className="w-screen h-screen flex justify-center dark:bg-stone-900 dark:text-stone-100">
-        <div className="w-full lg:w-[1024px] px-2 lg:px-">
+        <div className="w-full lg:w-[1024px] px-2 lg:px-0" id="app">
           {children}
         </div>
       </body>

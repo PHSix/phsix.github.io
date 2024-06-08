@@ -1,10 +1,13 @@
 'use client'
+import { toggle } from 'radash'
 import { useEffect, useRef } from 'react'
 import useDark from '~/hooks/useDark'
 
 interface Renderer {
   dispose: VoidFunction
 }
+
+let toggleDark = (dark: boolean) => {}
 
 export default function AnimateRotation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -115,6 +118,12 @@ export default function AnimateRotation() {
       // })
 
       globalRenderer = renderer
+
+      toggleDark = (d) => {
+        if (d)
+          material.color = darkFg
+        else material.color = fg
+      }
     })
 
     return () => {
@@ -129,6 +138,10 @@ export default function AnimateRotation() {
         window.removeEventListener('mouseup', onMouseUp)
     }
   }, [])
+
+  useEffect(() => {
+    toggleDark(dark)
+  }, [dark])
 
   return <canvas className="w-full h-full" ref={canvasRef} />
 }
