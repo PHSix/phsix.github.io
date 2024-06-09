@@ -47,15 +47,27 @@ export default function DarkModeSwitcher() {
   }
 
   return (
-    <div
-      suppressHydrationWarning
-      className="cursor-pointer dark:bg-[url(/icons/sun.svg)] bg-[url(/icons/moon.svg)]"
-      style={{
-        height: '24px',
-        width: '24px',
-        backgroundSize: '24px',
-      }}
-      onClick={darkModeToggle}
-    />
+    <>
+      <img
+        className="cursor-pointer hidden"
+        src="/icons/sun.svg"
+        style={{
+          height: '24px',
+          width: '24px',
+          backgroundSize: '24px',
+        }}
+        onClick={darkModeToggle}
+      />
+      <img
+        className="cursor-pointer dark:hidden"
+        src="/icons/moon.svg"
+        style={{
+          height: '24px',
+          width: '24px',
+          backgroundSize: '24px',
+        }}
+        onClick={darkModeToggle}
+      />
+    </>
   )
 }

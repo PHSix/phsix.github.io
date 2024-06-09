@@ -30,7 +30,7 @@ export default function Tooltip(
         onClose={() => {
           visible.value = false
         }}
-        className="w-[70vw] md:w-[50vw]"
+        className="w-[30vw] md:w-[40vw]"
       >
         <div>{props.content}</div>
         <div className="flex gap-4 justify-end mt-8">
