@@ -1,0 +1,153 @@
+:root {
+  --colors-primary: #4d9375;
+  --colors-foreground: #c8c5b8;
+  --colors-activeForeground: #bebaab;
+  --colors-secondaryForeground: #83827d;
+  --colors-ignored: #383837;
+  --colors-border: #f0f0f0;
+  --colors-background: #121212;
+  --colors-activeBackground: #181818;
+  --colors-lowBackground: #222222;
+  --colors-lowActiveBackground: #292929;
+  --colors-lowBorder: #e7e5db;
+  --colors-comment: #5c6b5e;
+  --colors-string: #c98a7d;
+  --colors-variable: #bd976a;
+  --colors-keyword: #4d9375;
+  --colors-number: #4c9a91;
+  --colors-boolean: #4d9375;
+  --colors-operator: #cb7676;
+  --colors-func: #80a665;
+  --colors-constant: #c99076;
+  --colors-class: #6893bf;
+  --colors-interface: #5da994;
+  --colors-type: #5da9a7;
+  --colors-builtin: #cb7676;
+  --colors-property: #b8a965;
+  --colors-namespace: #db889a;
+  --colors-punctuation: #666666;
+  --colors-decorator: #bd8f8f;
+  --colors-regex: #c4704f;
+  --colors-green: #4d9375;
+  --colors-cyan: #5eaab5;
+  --colors-blue: #6394bf;
+  --colors-red: #cb7676;
+  --colors-orange: #d4976c;
+  --colors-yellow: #e6cc77;
+  --colors-magenta: #d9739f;
+}
+.grammar-container {
+  background: var(--colors-background) !important;
+  color: var(--colors-foreground);
+  border-radius: 5px;
+  padding: 0 0.25rem 0.5rem 0.25rem;
+
+  .grammar-pre-container {
+    background: unset !important;
+    width: 100%;
+    scrollbar-color: rgb(68 64 60) rgba(0, 0, 0, 0);
+    padding: 0.5rem;
+    display: block;
+    overflow: auto;
+    background-color: rgb(245 245 244);
+    border-radius: 0.375rem;
+    min-height: 1rem;
+    max-height: 24rem;
+
+    .grammar-code-container {
+      text-shadow: none;
+      background: none;
+      background-color: unset !important;
+      .grammar-comment {
+        color: var(--colors-comment);
+      }
+      .grammar-variable,
+      .grammar-this {
+        color: var(--colors-variable);
+      }
+
+      .grammar-identifier {
+        color: var(--colors-property);
+      }
+
+      .grammar-string,
+      .grammar-string_fragment {
+        color: var(--colors-string);
+      }
+
+      .grammar-number {
+        color: var(--colors-number);
+      }
+
+      .grammar-class {
+        color: var(--colors-class);
+      }
+
+      .grammar-inferface {
+        color: var(--colors-interface);
+      }
+
+      .grammar-namespace {
+        color: var(--colors-namespace);
+      }
+
+      .grammar-property {
+        color: var(--colors-property);
+      }
+
+      .grammar-type {
+        color: var(--colors-type);
+      }
+
+      .grammar-const {
+        color: var(--colors-constant);
+      }
+
+      .grammar-function {
+        color: var(--colors-func);
+      }
+
+      .grammar-private {
+        color: var(--colors-keyword);
+      }
+
+      .grammar-regex {
+        color: var(--colors-regex);
+      }
+
+      .grammar-keyword,
+      .grammar-return,
+      .grammar-extends,
+      .grammar-as,
+      .grammar-let,
+      .grammar-for,
+      .grammar-of,
+      .grammar-while,
+      .grammar-export,
+      .grammar-new,
+      .grammmar-null,
+      .grammar-if,
+      .grammar-else {
+        color: var(--colors-keyword);
+      }
+
+      .grammar-false,
+      .grammar-true {
+        color: var(--colors-boolean);
+      }
+
+      .grammar-operator {
+        color: var(--colors-operator);
+      }
+    }
+  }
+}
+
+.grammar-container:is(.dark *) {
+  .grammar-pre-container {
+    background: none !important;
+    .grammar-code-container {
+      background-color: unset !important;
+    }
+  }
+}

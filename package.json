@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "postinstall": "node script/fetchWasm.js"
   },
   "dependencies": {
     "@altenull/github-lang-to-icon": "^1.0.1",
@@ -27,7 +27,6 @@
     "react-dom": "19.0.0-rc-9d4fba0788-20240530",
     "sass": "^1.75.0",
     "three": "^0.163.0",
-    "tree-sitter-wasms": "^0.1.11",
     "web-tree-sitter": "^0.22.6",
     "yaml": "^2.4.1"
   },

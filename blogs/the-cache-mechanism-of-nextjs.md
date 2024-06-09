@@ -8,12 +8,7 @@ tags:
 
 > 最近在研究使用next建站，在使用RSC的时候发现了一些新坑，记录一下
 
-在nextjs13之前，由于没有`React Server Component`的存在，缓存的相关操作其实并不是特别复杂，
-因为浏览器会每次根据请求去进行服务端预渲染，通常在高负载的场景才需要你服务端去做一个计算或者请求结果缓存的策略。
-但是，在nextjs13以及之后，引入了`RSC`的概念之后，对于`Server Component`，nextjs会把他们编译称`RSC Payload`，
-同时，我们可以在这个服务端组件中直接写`Nodejs`代码，这部分代码只会在服务端执行，而通常情况下，我们需要在这个`RSC Payload`
-中携带我们的查询信息，但是这个查询信息会由于客户端的修改操作之后更新，这时我们就需要去更新我们`RSC Payload`，对于这种机制的缓存，
-我们称之为`Router Cache`。
+在nextjs13之前，由于没有`React Server Component`的存在，缓存的相关操作其实并不是特别复杂，因为浏览器会每次根据请求去进行服务端预渲染，通常在高负载的场景才需要你服务端去做一个计算或者请求结果缓存的策略。但是，在nextjs13以及之后，引入了`RSC`的概念之后，对于`Server Component`，nextjs会把他们编译称`RSC Payload`，同时，我们可以在这个服务端组件中直接写`Nodejs`代码，这部分代码只会在服务端执行，而通常情况下，我们需要在这个`RSC Payload`中携带我们的查询信息，但是这个查询信息会由于客户端的修改操作之后更新，这时我们就需要去更新我们`RSC Payload`，对于这种机制的缓存，我们称之为`Router Cache`。
 
 在nextjs中，缓存的策略分别分为以下几类：
 1. Data cache
@@ -23,9 +18,7 @@ tags:
 
 其中只有`Route cache`是工作在客户端，作用是在浏览器中缓存`RSC Payload`等数据，可以缓存在导航前后的状态数据并恢复
 
-`Data cache`的主要作用是缓存服务端的数据请求，
-主要是通过`fetch`和`nextjs`的[unstable_cache](https://nextjs.org/docs/app/api-reference/functions/unstable_cache)去缓存异步请求结果或是复杂计算，
-通过判断tag的变化去进行更新，这里可以模拟以下next的这套缓存机制的实现，同时结合了一部分`Request Memoization`的实现特性，具体代码实现如下：
+`Data cache`的主要作用是缓存服务端的数据请求，主要是通过`fetch`和`nextjs`的[unstable_cache](https://nextjs.org/docs/app/api-reference/functions/unstable_cache)去缓存异步请求结果或是复杂计算，通过判断tag的变化去进行更新，这里可以模拟以下next的这套缓存机制的实现，同时结合了一部分`Request Memoization`的实现特性，具体代码实现如下：
 
 ```typescript
 class NextCache {
@@ -114,5 +107,4 @@ revalidatePath("/")
 ```
 
 ## 对于nextjs缓存上可能没讲清楚的坑
-- tag的缓存和path的缓存带来的作用可能并不一致，当你试图重新校验tag的缓存时，你有可能会发现你的页面并没有跟着更新，
-因为只更新了tag去推动Date fetch的缓存，但是path的缓存并未更新，也就是并没有驱动服务端去重新渲染RSC页面
+- tag的缓存和path的缓存带来的作用可能并不一致，当你试图重新校验tag的缓存时，你有可能会发现你的页面并没有跟着更新，因为只更新了tag去推动Date fetch的缓存，但是path的缓存并未更新，也就是并没有驱动服务端去重新渲染RSC页面

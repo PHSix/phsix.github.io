@@ -8,7 +8,6 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   distDir: 'dist',
   experimental: {
-    reactCompiler: false,
   },
   webpack: (conf) => {
     conf.resolve.fallback = {

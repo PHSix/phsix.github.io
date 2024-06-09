@@ -19,12 +19,12 @@ export default async function BlogIdPage(props: Props) {
         title="PH's Blog"
         links={[
           {
-            url: '/',
-            text: '/index',
-          },
-          {
             url: '/blog',
             text: '/blog',
+          },
+          {
+            url: '/',
+            text: '/index',
           },
         ]}
       >

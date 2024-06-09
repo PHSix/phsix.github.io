@@ -2,40 +2,63 @@
   background-size: cover;
   background-position: center;
   line-height: 100%;
-  @apply p-4 rounded-xl;
+  padding: 1rem;
+  border-radius: 0.75px;
+}
+
+@media (min-width: 768px) {
+  .blog-page-content {
+    padding: 0px;
+  }
 }
 
 .blog-page-content {
-  @apply p-0 md:p-0 text-wrap flex flex-col gap-4;
+  padding: 0;
   font-size: 1em;
+  text-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & > h1,
+  h2,
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    &::after {
+      content: "";
+      height: 1px;
+      width: 100%;
+      display: block;
+    }
+  }
   & > h1 {
-    @apply mt-4 mb-2;
     font-size: 1.5em;
 
     &::after {
-      content: "";
-      height: 1px;
-      @apply w-full block bg-stone-100 shadow-md;
+      --tw-bg-opacity: 1;
+      background-color: rgb(245 245 244 / var(--tw-bg-opacity));
+
+      --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+        0 2px 4px -2px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     }
   }
   & > h2 {
-    @apply mt-4 mb-2;
     font-size: 1.3em;
     &::after {
-      content: "";
-      height: 1px;
-      @apply w-full block bg-stone-100/90;
+      background-color: rgb(245 245 244 / 0.9);
     }
   }
 
   & > h3 {
-    @apply mt-4 mb-2;
     font-size: 1.2em;
 
     &::after {
-      content: "";
-      height: 1px;
-      @apply w-full block bg-stone-100/70;
+      background-color: rgb(245 245 244 / 0.7);
     }
   }
 
@@ -58,69 +81,88 @@
   }
 
   li {
-    @apply mb-2;
+    margin-bottom: 0.5rem;
     &::marker {
       position: relative;
     }
   }
 
   code {
-    @apply px-1 inline-block bg-red-50 rounded text-left box-border mx-[4px] dark:bg-stone-700/80 dark:text-stone-200;
-  }
-
-  pre[class*="language-"],
-  pre[class*="lang-"],
-  pre {
-    @apply w-full bg-stone-100 dark:bg-stone-800 p-2 block overflow-auto max-h-96 rounded-md min-h-4;
-    scrollbar-color: rgb(68 64 60) rgba(0, 0, 0, 0);
-
-    code[class*="language-"],
-    code[class*="lang-"],
-    code {
-      text-shadow: none;
-      background: none;
-    }
+    @apply dark:bg-stone-700/80 dark:text-stone-200;
+    padding: 0 0.25rem;
+    display: inline-block;
+    border-radius: 0.25rem;
+    text-align: left;
+    box-sizing: border-box;
+    margin: 0 4px;
+    background-color: rgb(254 242 242);
   }
 
   a {
-    @apply p-0 px-1 relative;
+    padding: 0 0.25rem;
+    position: relative;
 
     &:visited {
-      @apply text-stone-600 dark:text-stone-400;
+      @apply dark:text-stone-400;
+
+      color: rgb(87 83 78);
     }
 
     &::after {
       content: "";
       left: 0;
       bottom: 0;
-      @apply w-full absolute h-[1px] bg-stone-700 dark:bg-stone-200;
+      @apply dark:bg-stone-200;
+      width: 100%;
+      position: absolute;
+      height: 1px;
+      background-color: rgb(68 64 60);
     }
   }
 
   img {
-    @apply block text-center;
+    display: block;
+    text-align: center;
   }
 
   blockquote {
-    @apply block text-neutral-500 bg-slate-50/70 dark:bg-stone-800/70 p-0 flex shadow-sm;
+    @apply dark:bg-stone-800/70;
+    display: flex;
+    padding: 0;
+    color: rgb(115 115 115);
+    background-color: rgb(248 250 252 / 0.7);
+    // --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    // --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
     &::before {
       content: "";
       width: 0.3em;
       min-height: fit-content;
-      @apply bg-slate-400 dark:bg-slate-600;
+      background-color: rgb(148 163 184);
+      @apply dark:bg-slate-600;
     }
 
     & > p {
-      @apply inline-block p-4;
+      display: inline-block;
+      padding: 1rem;
     }
   }
 
   strong {
-    @apply font-bold text-stone-700 dark:text-stone-300 mx-1;
+    @apply dark:text-stone-300;
+    font-weight: 700;
   }
 
   em {
-    @apply italic text-stone-700 dark:text-stone-300 mx-1;
+    @apply dark:text-stone-300;
+    font-style: italic;
+  }
+
+  strong,
+  em {
+    color: rgb(68 64 60);
+    margin: 0 0.25rem;
   }
 }
-

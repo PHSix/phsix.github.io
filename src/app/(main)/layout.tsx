@@ -1,3 +1,4 @@
+import { MessageContainer } from '~/components/Message'
 import './global.css'
 
 export const metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <div className="w-full lg:w-[1024px] px-2 lg:px-0" id="app">
           {children}
         </div>
+        <MessageContainer />
       </body>
     </html>
   )

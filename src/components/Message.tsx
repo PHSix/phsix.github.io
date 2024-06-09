@@ -1,26 +1,17 @@
 'use client'
-import { signal } from '@preact/signals-react'
 import { useState } from 'react'
-import * as ReactDOM from 'react-dom'
 
 const isServer = typeof window === 'undefined'
 
-const msgs = signal<{ content: string, uuid: string, status: 'success' | 'error' }[]>([])
+let msgs: {
+  content: string
+  uuid: string
+  status: 'success' | 'error'
+}[] = []
+
 let update = () => {}
 
 class Message {
-  constructor() {
-    if (isServer)
-      return
-    const container = document.createElement('div')
-    container.className = 'fixed left-[1rem] bottom-[1rem] gap-[1rem] flex flex-col-reverse z-10'
-
-    document.body.appendChild(container)
-    ReactDOM.createPortal(<MessageComponent />, container)
-
-    // render(<MessageComponent />, container)
-  }
-
   success(content: string) {
     if (isServer)
       return
@@ -34,12 +25,12 @@ class Message {
   }
 
   private insert(content: string, status: 'success' | 'error') {
-    const uuid = getUuid()
-    msgs.value = [...msgs.value, { content, status, uuid }]
+    const uuid = crypto.randomUUID()
+    msgs = [...msgs, { content, status, uuid }]
     update()
 
     setTimeout(() => {
-      msgs.value = msgs.value.filter(msg => msg.uuid !== uuid)
+      msgs = msgs.filter(msg => msg.uuid !== uuid)
       update()
     }, 3000)
   }
@@ -47,22 +38,14 @@ class Message {
 
 const message = new Message()
 
-const dotReg = /,/g
-function getUuid() {
-  return crypto
-    .getRandomValues(new Uint8Array(8))
-    .toString()
-    .replace(dotReg, '')
-}
-
-function MessageComponent() {
+export function Messages() {
   const [_, setState] = useState([])
   update = () => {
     setState([])
   }
   return (
     <>
-      {msgs.value.map(msg => (
+      {msgs.map(msg => (
         <div
           key={msg.uuid}
           className="px-4 py-1 bg-slate-100 dark:bg-stone-700 rounded flex items-center gap-2"
@@ -102,6 +85,14 @@ function MessageComponent() {
         </div>
       ))}
     </>
+  )
+}
+
+export function MessageContainer() {
+  return (
+    <div className="fixed left-[1rem] bottom-[1rem] gap-[1rem] flex flex-col-reverse z-10" id="message-container">
+      <Messages />
+    </div>
   )
 }
 
