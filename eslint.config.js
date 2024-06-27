@@ -8,4 +8,8 @@ export default antfu({
     'style/brace-style': ['warn', '1tbs'],
     'no-console': ['off'],
   },
+  formatters: {
+    css: "prettier",
+    html: "prettier",
+  },
 })
