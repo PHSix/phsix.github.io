@@ -1,35 +1,30 @@
 'use client'
-import { effect, signal } from '@preact/signals-react'
 import { useEffect, useState } from 'react'
+//
+// const KEY = '--site-theme'
+//
+// function getDark() {
+//   try {
+//     const item = localStorage.getItem(KEY)
+//     if (!item)
+//       throw new Error(`can not get ${KEY} in localStorage`)
+//
+//     const dark = JSON.parse(item).value
+//
+//     return dark
+//   } catch {
+//     return false
+//   }
+// }
 
-const KEY = '--site-theme'
-
-function getDark() {
-  try {
-    const item = localStorage.getItem(KEY)
-    if (!item)
-      throw new Error(`can not get ${KEY} in localStorage`)
-
-    const dark = JSON.parse(item).value
-
-    return dark
-  } catch {
-    return false
-  }
-}
-
-function sync(value: boolean) {
-  localStorage.setItem(KEY, JSON.stringify({ value }))
-}
-
-const darkSignal = signal(getDark())
+// function sync(value: boolean) {
+//   localStorage.setItem(KEY, JSON.stringify({ value }))
+// }
 
 export default function useDark(): [boolean, (value: boolean) => void] {
-  const [dark, _setDark] = useState(getDark)
+  const [dark, _setDark] = useState(() => typeof window === 'undefined' ? false : window.matchMedia('(prefers-color-scheme: dark)').matches)
   function setDark(val: boolean) {
     _setDark(val)
-    darkSignal.value = val
-    sync(val)
     if (val)
       document.documentElement.classList.add('dark')
     else
@@ -37,11 +32,7 @@ export default function useDark(): [boolean, (value: boolean) => void] {
   }
 
   useEffect(() => {
-    const disposable = effect(() => {
-      setDark(darkSignal.value)
-    })
-
-    return () => disposable()
+    setDark(dark)
   }, [])
 
   return [dark, setDark]

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import MainHeader from './MainHeader'
 import Card from '~/components/Card'
-import { GithubIcon, NeovimIcon, NixOSIcon, NodeJsIcon, PlusIcon, ReactIcon, ThreejsIcon, TypescriptIcon } from '~/components/Icons'
+import { GithubIcon, NixOSIcon, NodeJsIcon, PlusIcon, ReactIcon, ThreejsIcon, TypescriptIcon } from '~/components/Icons'
 import Tooltip from '~/components/Tooltip'
-import AnimateRotation from '~/components/AnimateRotation'
+import Sphere from '~/components/Sphere'
 
 export const metadata: Metadata = {
   title: 'PH\'s Site',
@@ -35,7 +35,7 @@ export default function Home() {
         >
           <section className="text-center">
             <div className="w-[24em] h-[24em]">
-              <AnimateRotation />
+              <Sphere />
             </div>
           </section>
 
@@ -44,12 +44,9 @@ export default function Home() {
           <section className="text-left p-4 md:p-0 space-y-2">
             <div>Hello, I'm Yi Chen. Welcome to my github site.</div>
 
-            <div>I am a front-end developer based in WuHan, China.</div>
+            <div>I am a front-end developer based in ShenZhen, China.</div>
 
             <div>I am passionate about Linux, programming, and gaming.</div>
-
-            <div>I am currently looking for a new job opportunity.</div>
-
           </section>
         </div>
 
@@ -109,25 +106,25 @@ export default function Home() {
             </div>
           </Card>
 
-          <Card>
-            <div className="flex flex-row items-center justify-between w-full">
-              <div className="flex flex-row items-center gap-2">
-                <NeovimIcon className="h-[1.5em]" />
-                Neovim
-              </div>
-
-              <Tooltip
-                content="Do you want to visit my nvim config?"
-                url="https://github.com/PHSix/nvim"
-              >
-                <GithubIcon className="h-[1.5em]" />
-              </Tooltip>
-            </div>
-
-            <div className="py-4">
-              The best code edtior for every geek developer.
-            </div>
-          </Card>
+          {/* <Card> */}
+          {/*   <div className="flex flex-row items-center justify-between w-full"> */}
+          {/*     <div className="flex flex-row items-center gap-2"> */}
+          {/*       <NeovimIcon className="h-[1.5em]" /> */}
+          {/*       Neovim */}
+          {/*     </div> */}
+          {/**/}
+          {/*     <Tooltip */}
+          {/*       content="Do you want to visit my nvim config?" */}
+          {/*       url="https://github.com/PHSix/nvim" */}
+          {/*     > */}
+          {/*       <GithubIcon className="h-[1.5em]" /> */}
+          {/*     </Tooltip> */}
+          {/*   </div> */}
+          {/**/}
+          {/*   <div className="py-4"> */}
+          {/*     The best code edtior for every geek developer. */}
+          {/*   </div> */}
+          {/* </Card> */}
 
           <Card>
             <div className="flex flex-row items-center justify-between w-full">

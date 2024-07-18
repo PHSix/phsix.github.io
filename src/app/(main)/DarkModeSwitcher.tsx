@@ -49,7 +49,7 @@ export default function DarkModeSwitcher() {
   return (
     <>
       <img
-        className="cursor-pointer hidden"
+        className="cursor-pointer hidden dark:block"
         src="/icons/sun.svg"
         style={{
           height: '24px',
