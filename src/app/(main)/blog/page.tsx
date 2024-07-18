@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import MainHeader from '../MainHeader'
-import ImageBanner from './ImageBanner'
+import Banner from './Banner'
 import { getBlogList } from '~/utils/blogs'
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default async function Blog() {
       >
       </MainHeader>
       <main>
-        <ImageBanner />
+        <Banner />
         <div className="px-8 my-4">
           <div className="flex flex-col gap-5 pl-2">
             {blogs.map(b => (

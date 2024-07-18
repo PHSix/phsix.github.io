@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import MainHeader from '../../MainHeader'
-import ImageBanner from '../ImageBanner'
+import Banner from '../Banner'
 import Mdx from './Mdx'
 import { getBlog, getBlogList } from '~/utils/blogs'
 import './style.scss'
@@ -29,14 +29,14 @@ export default async function BlogIdPage(props: Props) {
         ]}
       >
       </MainHeader>
-      <ImageBanner
+      <Banner
         className="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between p-4 flex-wrap"
       >
         <div className="text-2xl">{blog.title}</div>
         <div className="opacity-80">
           {blog.date.format('YYYY年MM月DD日')}
         </div>
-      </ImageBanner>
+      </Banner>
       <article className="blog-page-content">
         <Mdx
           source={blog.content}

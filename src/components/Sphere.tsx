@@ -36,7 +36,7 @@ export default function Sphere() {
     camera.position.set(0, 0, 90)
 
     const darkFg = new Color('#d1d5db')
-    const fg = new Color('#44403c')
+    const fg = new Color('#525252')
     const material = new MeshBasicMaterial({
       color: dark ? darkFg : fg,
       wireframe: true,
