@@ -10,12 +10,12 @@ export default function Code(
 ) {
   return (
     <div className="grammar-container mb-2 mx-2">
-      <div className="px-4 py-1 border-b-[1px] border-b-[#5c6b5e50] flex justify-between items-center select-none">
+      <div className="px-1 py-1 border-b-[1px] border-b-[#5c6b5e50] flex justify-between items-center select-none">
         <LangIcon lang={props.lang} />
         <ClipboardIcon
           width={20}
           height={20}
-          className="cursor-pointer"
+          className="cursor-pointer hover:bg-neutral-800 rounded-md p-1"
           onClick={() => {
             navigator.clipboard.writeText(props.sourceCode)
             message.success('复制成功')
