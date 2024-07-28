@@ -35,6 +35,9 @@ importers:
       eslint-plugin-format:
         specifier: ^0.1.1
         version: 0.1.1(eslint@9.1.0)
+      jotai:
+        specifier: ^2.9.1
+        version: 2.9.1(@types/react@18.2.79)(react@19.0.0-rc-9d4fba0788-20240530)
       next:
         specifier: 15.0.0-canary.2
         version: 15.0.0-canary.2(react-dom@19.0.0-rc-9d4fba0788-20240530(react@19.0.0-rc-9d4fba0788-20240530))(react@19.0.0-rc-9d4fba0788-20240530)(sass@1.75.0)
@@ -59,6 +62,9 @@ importers:
       sass:
         specifier: ^1.75.0
         version: 1.75.0
+      tailwind-scrollbar:
+        specifier: ^3.1.0
+        version: 3.1.0(tailwindcss@3.4.3)
       three:
         specifier: ^0.163.0
         version: 0.163.0
@@ -2086,6 +2092,18 @@ packages:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
 
+  jotai@2.9.1:
+    resolution: {integrity: sha512-t4Q7FIqQB3N/1art4OcqdlEtPmQ2h4DNIzTFhvt06WE0kCpQ1QoG+1A1IGTaQBi2KdDRsnywj+ojmHHKgw6PDA==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -2984,6 +3002,12 @@ packages:
   synckit@0.9.0:
     resolution: {integrity: sha512-7RnqIMq572L8PeEzKeBINYEJDDxpcH8JEgLwUqBd3TkofhFRbkq4QLR0u+36avGAhCRbk2nnmjcW9SE531hPDg==}
     engines: {node: ^14.18.0 || >=16.0.0}
+
+  tailwind-scrollbar@3.1.0:
+    resolution: {integrity: sha512-pmrtDIZeHyu2idTejfV59SbaJyvp1VRjYxAjZBH0jnyrPRo6HL1kD5Glz8VPagasqr6oAx6M05+Tuw429Z8jxg==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
 
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
@@ -5693,6 +5717,11 @@ snapshots:
 
   jiti@1.21.0: {}
 
+  jotai@2.9.1(@types/react@18.2.79)(react@19.0.0-rc-9d4fba0788-20240530):
+    optionalDependencies:
+      '@types/react': 18.2.79
+      react: 19.0.0-rc-9d4fba0788-20240530
+
   js-tokens@4.0.0: {}
 
   js-yaml@4.1.0:
@@ -6839,6 +6868,10 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.1.1
       tslib: 2.6.2
+
+  tailwind-scrollbar@3.1.0(tailwindcss@3.4.3):
+    dependencies:
+      tailwindcss: 3.4.3
 
   tailwindcss@3.4.3:
     dependencies:

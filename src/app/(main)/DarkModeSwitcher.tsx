@@ -3,14 +3,14 @@ import type { MouseEvent } from 'react'
 import useDark from '~/hooks/useDark'
 
 export default function DarkModeSwitcher() {
-  const [dark, setDark] = useDark()
+  const [dark, toggle] = useDark()
 
   function darkModeToggle(event: MouseEvent) {
     const isAppearanceTransition = !!document.startViewTransition
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition)
-      setDark(!dark)
+      toggle()
 
     const x = event.clientX
     const y = event.clientY
@@ -20,7 +20,7 @@ export default function DarkModeSwitcher() {
     )
 
     const transition = document.startViewTransition(() => {
-      setDark(!dark)
+      toggle()
     })
 
     transition.ready

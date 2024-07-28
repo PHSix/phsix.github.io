@@ -1,32 +1,24 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { atom, useAtom } from 'jotai'
+import { atomWithStorage, createJSONStorage } from 'jotai/utils'
 
-function getFromSession(): boolean | null {
-  const item = sessionStorage.getItem('--is-dark')
-  if (!item)
-    return null
-  try {
-    const val = Boolean(item)
-    return val
-  } catch {
-    return null
-  }
-}
+const isDark: boolean = typeof window === 'undefined' ? false : matchMedia('(prefers-color-scheme: dark)').matches
+const storage = createJSONStorage<boolean>(() => sessionStorage)
+const _darkAtom = atomWithStorage('is-dark', isDark, storage)
 
-export default function useDark(): [boolean, (value: boolean) => void] {
-  const [dark, _setDark] = useState(() => typeof window === 'undefined' ? false : (getFromSession() ?? window.matchMedia('(prefers-color-scheme: dark)').matches))
-  function setDark(val: boolean) {
-    _setDark(val)
-    sessionStorage.setItem('--is-dark', `${val}`)
-    if (val)
-      document.documentElement.classList.add('dark')
-    else
-      document.documentElement.classList.remove('dark')
-  }
+const darkAtom = atom((get) => {
+  console.log('get', get(_darkAtom))
+  return get(_darkAtom)
+}, (get, set) => {
+  const next = !get(_darkAtom)
+  if (next)
+    document.documentElement.classList.add('dark')
+  else
+    document.documentElement.classList.remove('dark')
 
-  useEffect(() => {
-    setDark(dark)
-  }, [])
+  set(_darkAtom, next)
+})
 
-  return [dark, setDark]
+export default function useDark(): [boolean, () => void] {
+  return useAtom(darkAtom)
 }

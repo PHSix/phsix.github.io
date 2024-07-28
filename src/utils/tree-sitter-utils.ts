@@ -4,7 +4,7 @@ import process from 'node:process'
 import Parser from 'web-tree-sitter'
 
 let initFinish = false
-const wasmsDir = path.resolve(process.cwd(), 'public', 'wasms')
+const wasmsDir = path.resolve(process.cwd(), 'wasms')
 const langMap: Record<string, Parser.Language> = {}
 
 const langNameRenameMap: Record<string, string> = {

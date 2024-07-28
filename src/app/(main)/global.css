@@ -2,23 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-400 dark:bg-neutral-600;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-600 dark:bg-neutral-500;
+}
+
 @layer base {
   :root {
     --foreground: theme(colors.stone.800);
-    --background: theme(colors.white)
-    --scrollbar-thumb: theme(colors.stone.900)
+    --background: theme(colors.white) --scrollbar-thumb: theme(colors.stone.900);
   }
 
   .dark {
     --foreground: theme(colors.stone.200);
-    --background: theme(colors.stone.900)
-    --scrollbar-thumb: theme(colors.stone.400)
+    --background: theme(colors.stone.900) --scrollbar-thumb:
+      theme(colors.stone.400);
   }
 
   body {
@@ -31,7 +47,11 @@ html, body {
   margin: 0;
   padding: 0;
 
-  font-family: Macon, Monaco, monaco, Consolas, Lucida Console, monospace;
+  font-family:
+    JetBrains Mono,
+    Consolas,
+    Lucida Console,
+    monospace;
 }
 
 .tooltip > .tooltip-child {
@@ -41,4 +61,3 @@ html, body {
 .tooltip:hover > .tooltip-child {
   display: block;
 }
-

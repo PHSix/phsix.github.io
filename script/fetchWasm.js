@@ -38,7 +38,7 @@ const fts = [
   'vue',
   'yaml',
 ]
-const wasmsDir = path.resolve(process.cwd(), 'public', 'wasms')
+const wasmsDir = path.resolve(process.cwd(), 'wasms')
 
 async function main() {
   await mkdir(wasmsDir).catch(() => {})
