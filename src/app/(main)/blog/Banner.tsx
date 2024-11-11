@@ -9,7 +9,7 @@ export default function Banner(props: PropsWithChildren<{ className?: string }>)
       <img src="/images/default.png" className="absolute z-[-1] dark:hidden w-full h-full top-0 left-0 rounded-xl object-cover" />
       <img
         src="/images/default-dark.png"
-        className="absolute z-[-1] w-[900px] h-full top-0 left-0 rounded-xl object-cover hidden dark:block"
+        className="absolute z-[-1] w-full h-full top-0 left-0 rounded-xl object-cover hidden dark:block"
       />
       {props.children}
     </div>

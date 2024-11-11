@@ -6,10 +6,8 @@ const isDark: boolean = typeof window === 'undefined' ? false : matchMedia('(pre
 const storage = createJSONStorage<boolean>(() => sessionStorage)
 const _darkAtom = atomWithStorage('is-dark', isDark, storage)
 
-const darkAtom = atom((get) => {
-  console.log('get', get(_darkAtom))
-  return get(_darkAtom)
-}, (get, set) => {
+const darkAtom = atom(get =>
+  get(_darkAtom), (get, set) => {
   const next = !get(_darkAtom)
   if (next)
     document.documentElement.classList.add('dark')

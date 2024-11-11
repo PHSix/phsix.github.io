@@ -9,8 +9,10 @@ export default function DarkModeSwitcher() {
     const isAppearanceTransition = !!document.startViewTransition
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    if (!isAppearanceTransition)
+    if (!isAppearanceTransition) {
       toggle()
+      return
+    }
 
     const x = event.clientX
     const y = event.clientY
