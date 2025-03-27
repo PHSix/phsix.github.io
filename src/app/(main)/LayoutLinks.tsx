@@ -1,6 +1,5 @@
 'use client'
-import { useSignal } from '@preact/signals-react'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import NextLink from 'next/link'
 import PopupLinks from './PopupLinks'
 import DarkModeSwitcher from './DarkModeSwitcher'
@@ -12,13 +11,13 @@ export default function LayoutLinks(props: {
     text: string
   }[]
 }) {
-  const showMenu = useSignal(false)
+  const [showMenu, setShowMenu] = useState(false)
   return (
     <Fragment>
       <div
         className="cursor-pointer md:hidden"
         onClick={() => {
-          showMenu.value = true
+          setShowMenu(true)
         }}
       >
         🔗
@@ -27,7 +26,7 @@ export default function LayoutLinks(props: {
         visible={showMenu}
         links={props.links}
         onClose={() => {
-          showMenu.value = false
+          setShowMenu(false)
         }}
       />
       <div className="gap-4 hidden md:flex">

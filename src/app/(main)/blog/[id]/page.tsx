@@ -30,14 +30,14 @@ export default async function BlogIdPage(props: Props) {
       >
       </MainHeader>
       <Banner
-        className="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between p-4 flex-wrap"
+        className="h-56 mb-8 md:mb-16 flex flex-row items-end justify-between p-4 flex-wrap gap-8"
       >
         <div className="text-2xl">{blog.title}</div>
         <div className="opacity-80">
           {blog.date.format('YYYY年MM月DD日')}
         </div>
       </Banner>
-      <article className="blog-page-content">
+      <article className="blog-page-content px-4">
         <Mdx
           source={blog.content}
         />

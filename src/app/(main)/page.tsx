@@ -106,26 +106,6 @@ export default function Home() {
             </div>
           </Card>
 
-          {/* <Card> */}
-          {/*   <div className="flex flex-row items-center justify-between w-full"> */}
-          {/*     <div className="flex flex-row items-center gap-2"> */}
-          {/*       <NeovimIcon className="h-[1.5em]" /> */}
-          {/*       Neovim */}
-          {/*     </div> */}
-          {/**/}
-          {/*     <Tooltip */}
-          {/*       content="Do you want to visit my nvim config?" */}
-          {/*       url="https://github.com/PHSix/nvim" */}
-          {/*     > */}
-          {/*       <GithubIcon className="h-[1.5em]" /> */}
-          {/*     </Tooltip> */}
-          {/*   </div> */}
-          {/**/}
-          {/*   <div className="py-4"> */}
-          {/*     The best code edtior for every geek developer. */}
-          {/*   </div> */}
-          {/* </Card> */}
-
           <Card>
             <div className="flex flex-row items-center justify-between w-full">
               <div className="flex flex-row items-center gap-2">

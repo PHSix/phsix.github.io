@@ -17,7 +17,18 @@ export default function Code(
           height={20}
           className="cursor-pointer hover:bg-neutral-800 rounded-md p-1"
           onClick={() => {
-            navigator.clipboard.writeText(props.sourceCode)
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(props.sourceCode)
+            } else {
+              // fallback for old api
+              const textArea = document.createElement('textarea')
+              textArea.value = props.sourceCode
+              document.body.appendChild(textArea)
+              textArea.select()
+              document.execCommand('copy')
+              textArea.remove()
+            }
+
             message.success('复制成功')
           }}
         />

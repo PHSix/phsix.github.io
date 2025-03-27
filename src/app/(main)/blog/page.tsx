@@ -25,19 +25,17 @@ export default async function Blog() {
       </MainHeader>
       <main>
         <Banner />
-        <div className="px-8 my-4">
+        <div className="px-2 md:px-8 my-4">
           <div className="flex flex-col gap-5 pl-2">
             {blogs.map(b => (
               <Link
                 key={b.id}
-                className="flex justify-between flex-row hover:text-gray-400 duration-300"
+                className="flex justify-between items-end flex-row hover:text-gray-400 duration-300 gap-2 md:gap-8"
                 href={`/blog/${b.id}`}
               >
-                <div>
-                  <div>{b.title}</div>
-                </div>
+                <div>{b.title}</div>
 
-                <div>{b.dateString}</div>
+                <div className="text-nowrap text-xs md:text-[1em]">{b.dateString}</div>
               </Link>
             ))}
           </div>

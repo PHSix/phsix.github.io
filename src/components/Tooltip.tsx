@@ -1,7 +1,6 @@
 'use client'
-import { useSignal } from '@preact/signals-react'
 import type { PropsWithChildren, ReactNode } from 'react'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import Button from '~/components/Button'
 import { Modal } from '~/components/Modal'
 
@@ -12,14 +11,14 @@ export default function Tooltip(
     url: string
   }>,
 ) {
-  const visible = useSignal(false)
+  const [visible, setVisible] = useState(false)
 
   return (
     <Fragment>
       <div
         className="cursor-pointer"
         onClick={() => {
-          visible.value = true
+          setVisible(true)
         }}
       >
         {props.children}
@@ -28,7 +27,7 @@ export default function Tooltip(
       <Modal
         visible={visible}
         onClose={() => {
-          visible.value = false
+          setVisible(false)
         }}
         className="w-[30vw] md:w-[40vw]"
       >
@@ -44,7 +43,7 @@ export default function Tooltip(
           </Button>
           <Button
             onClick={() => {
-              visible.value = false
+              setVisible(false)
             }}
           >
             No

@@ -1,9 +1,8 @@
-import type { Signal } from '@preact/signals-react'
 import NextLink from 'next/link'
 import { Modal } from '~/components/Modal'
 
 export default function PopupLinks(props: {
-  visible: Signal<boolean>
+  visible: boolean
   links?: {
     text: string
     url: string
