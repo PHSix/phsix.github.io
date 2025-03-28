@@ -150,7 +150,7 @@ like `unref`, `toValue`, `toRaw`, `toRefs`, `MaybeRef`, `MaybeRefOrGetter`, `isR
 
 1. 在写composition api的时候，如果param的参数类型是reactive的话，可以依赖于响应式数据的依赖链和惰性计算来减少不必要的计算，同时巧用`toValue`、`unref`等技巧，如：
 ```typescript
-const useAcc = (param: MaybeRefOrGetter<T>) => {
+const useAcc = (param: MaybeRefOrGetter<number>) => {
     return computed(() => {
         const value = unref(toValue(param))
         return value + 1
@@ -158,6 +158,6 @@ const useAcc = (param: MaybeRefOrGetter<T>) => {
 }
 ```
 
-...
+2. 分散state的管理，将state“原子化”。这部分是因为vue3中composition api带来的能力，你可以将你的状态分散管理在不同的“块”之间，每一个“块”只完成一个最小单元中需要的工作。块和块之间的交集应该尽可能小的互相依赖，并将通用/顶层依赖的内容放在最上头。
 
 # 总结
